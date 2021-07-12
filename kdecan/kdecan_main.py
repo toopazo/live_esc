@@ -222,11 +222,17 @@ class KDEcan:
         # # print("arbitrid = 43210765432107654321076543210")
         # print("arbitrid = {0:029b}".format(arbitrid))
 
+        # %d - print in integer format.
+        # %o - print in octal format.
+        # %x - print in hexadecimal format (letters will print in lowercase)
+        # %X - print in hexadecimal format (letters will print in uppercase)
+
         priority = "%02X" % 0
         sourceid = "%02X" % 0
         targetid = "%02X" % targetid
         objctadd = "%02X" % objctadd
 
+        # convert "arbitrid" into an integer with base 16 (hexadecimal)
         arbitrid = priority + sourceid + targetid + objctadd
         arbitrid = int(arbitrid, 16)
 
@@ -413,4 +419,5 @@ if __name__ == '__main__':
     ufilename = sys.argv[1]
     uesc_arr = [11, 12]     # [11, 16]
     uperiod = 0.1
-    kdecan.live_data(uesc_arr, uperiod, ufilename)
+    # kdecan.live_data(uesc_arr, uperiod, ufilename)
+    kdecan.get_esc_info(11)
