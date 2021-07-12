@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="0c5236f4-7c28-4532-8162-0266b9a39614" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/live_esc.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/live_esc.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pican2_board/python-can" beforeDir="false" afterPath="$PROJECT_DIR$/pican2_board/python-can" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pican2_board/python-can/.travis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/pican2_board/python-can/.travis.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pican2_board/python-can/can/bit_timing.py" beforeDir="false" afterPath="$PROJECT_DIR$/pican2_board/python-can/can/bit_timing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pican2_board/python-can/can/broadcastmanager.py" beforeDir="false" afterPath="$PROJECT_DIR$/pican2_board/python-can/can/broadcastmanager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pican2_board/python-can/can/bus.py" beforeDir="false" afterPath="$PROJECT_DIR$/pican2_board/python-can/can/bus.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pican2_board/python-can/can/interface.py" beforeDir="false" afterPath="$PROJECT_DIR$/pican2_board/python-can/can/interface.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pican2_board/python-can/can/interfaces/canalystii.py" beforeDir="false" afterPath="$PROJECT_DIR$/pican2_board/python-can/can/interfaces/canalystii.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pican2_board/python-can/can/interfaces/ics_neovi/neovi_bus.py" beforeDir="false" afterPath="$PROJECT_DIR$/pican2_board/python-can/can/interfaces/ics_neovi/neovi_bus.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pican2_board/python-can/can/interfaces/iscan.py" beforeDir="false" afterPath="$PROJECT_DIR$/pican2_board/python-can/can/interfaces/iscan.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pican2_board/python-can/can/interfaces/ixxat/canlib.py" beforeDir="false" afterPath="$PROJECT_DIR$/pican2_board/python-can/can/interfaces/ixxat/canlib.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pican2_board/python-can/can/interfaces/kvaser/canlib.py" beforeDir="false" afterPath="$PROJECT_DIR$/pican2_board/python-can/can/interfaces/kvaser/canlib.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pican2_board/python-can/can/interfaces/kvaser/constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/pican2_board/python-can/can/interfaces/kvaser/constants.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pican2_board/python-can/can/interfaces/kvaser/structures.py" beforeDir="false" afterPath="$PROJECT_DIR$/pican2_board/python-can/can/interfaces/kvaser/structures.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pican2_board/python-can/can/interfaces/nican.py" beforeDir="false" afterPath="$PROJECT_DIR$/pican2_board/python-can/can/interfaces/nican.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pican2_board/python-can/can/interfaces/pcan/basic.py" beforeDir="false" afterPath="$PROJECT_DIR$/pican2_board/python-can/can/interfaces/pcan/basic.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pican2_board/python-can/can/interfaces/pcan/pcan.py" beforeDir="false" afterPath="$PROJECT_DIR$/pican2_board/python-can/can/interfaces/pcan/pcan.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pican2_board/python-can/can/interfaces/seeedstudio/seeedstudio.py" beforeDir="false" afterPath="$PROJECT_DIR$/pican2_board/python-can/can/interfaces/seeedstudio/seeedstudio.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pican2_board/python-can/can/interfaces/serial/serial_can.py" beforeDir="false" afterPath="$PROJECT_DIR$/pican2_board/python-can/can/interfaces/serial/serial_can.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pican2_board/python-can/can/interfaces/slcan.py" beforeDir="false" afterPath="$PROJECT_DIR$/pican2_board/python-can/can/interfaces/slcan.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pican2_board/python-can/can/interfaces/socketcan/socketcan.py" beforeDir="false" afterPath="$PROJECT_DIR$/pican2_board/python-can/can/interfaces/socketcan/socketcan.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pican2_board/python-can/can/interfaces/socketcan/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/pican2_board/python-can/can/interfaces/socketcan/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pican2_board/python-can/can/interfaces/systec/constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/pican2_board/python-can/can/interfaces/systec/constants.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pican2_board/python-can/can/interfaces/systec/exceptions.py" beforeDir="false" afterPath="$PROJECT_DIR$/pican2_board/python-can/can/interfaces/systec/exceptions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pican2_board/python-can/can/interfaces/systec/ucan.py" beforeDir="false" afterPath="$PROJECT_DIR$/pican2_board/python-can/can/interfaces/systec/ucan.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pican2_board/python-can/can/interfaces/systec/ucanbus.py" beforeDir="false" afterPath="$PROJECT_DIR$/pican2_board/python-can/can/interfaces/systec/ucanbus.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pican2_board/python-can/can/interfaces/usb2can/usb2canInterface.py" beforeDir="false" afterPath="$PROJECT_DIR$/pican2_board/python-can/can/interfaces/usb2can/usb2canInterface.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pican2_board/python-can/can/interfaces/vector/canlib.py" beforeDir="false" afterPath="$PROJECT_DIR$/pican2_board/python-can/can/interfaces/vector/canlib.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pican2_board/python-can/can/interfaces/vector/xlclass.py" beforeDir="false" afterPath="$PROJECT_DIR$/pican2_board/python-can/can/interfaces/vector/xlclass.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pican2_board/python-can/can/interfaces/virtual.py" beforeDir="false" afterPath="$PROJECT_DIR$/pican2_board/python-can/can/interfaces/virtual.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pican2_board/python-can/can/io/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/pican2_board/python-can/can/io/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pican2_board/python-can/can/io/asc.py" beforeDir="false" afterPath="$PROJECT_DIR$/pican2_board/python-can/can/io/asc.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pican2_board/python-can/can/io/blf.py" beforeDir="false" afterPath="$PROJECT_DIR$/pican2_board/python-can/can/io/blf.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pican2_board/python-can/can/io/logger.py" beforeDir="false" afterPath="$PROJECT_DIR$/pican2_board/python-can/can/io/logger.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pican2_board/python-can/can/io/player.py" beforeDir="false" afterPath="$PROJECT_DIR$/pican2_board/python-can/can/io/player.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pican2_board/python-can/can/io/sqlite.py" beforeDir="false" afterPath="$PROJECT_DIR$/pican2_board/python-can/can/io/sqlite.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pican2_board/python-can/can/logger.py" beforeDir="false" afterPath="$PROJECT_DIR$/pican2_board/python-can/can/logger.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pican2_board/python-can/can/notifier.py" beforeDir="false" afterPath="$PROJECT_DIR$/pican2_board/python-can/can/notifier.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pican2_board/python-can/can/player.py" beforeDir="false" afterPath="$PROJECT_DIR$/pican2_board/python-can/can/player.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pican2_board/python-can/can/thread_safe_bus.py" beforeDir="false" afterPath="$PROJECT_DIR$/pican2_board/python-can/can/thread_safe_bus.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pican2_board/python-can/can/viewer.py" beforeDir="false" afterPath="$PROJECT_DIR$/pican2_board/python-can/can/viewer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pican2_board/python-can/doc/conf.py" beforeDir="false" afterPath="$PROJECT_DIR$/pican2_board/python-can/doc/conf.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pican2_board/python-can/examples/cyclic.py" beforeDir="false" afterPath="$PROJECT_DIR$/pican2_board/python-can/examples/cyclic.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pican2_board/python-can/examples/cyclic_multiple.py" beforeDir="false" afterPath="$PROJECT_DIR$/pican2_board/python-can/examples/cyclic_multiple.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pican2_board/python-can/examples/receive_all.py" beforeDir="false" afterPath="$PROJECT_DIR$/pican2_board/python-can/examples/receive_all.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pican2_board/python-can/examples/send_one.py" beforeDir="false" afterPath="$PROJECT_DIR$/pican2_board/python-can/examples/send_one.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pican2_board/python-can/examples/virtual_can_demo.py" beforeDir="false" afterPath="$PROJECT_DIR$/pican2_board/python-can/examples/virtual_can_demo.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pican2_board/python-can/test/back2back_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/pican2_board/python-can/test/back2back_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pican2_board/python-can/test/contextmanager_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/pican2_board/python-can/test/contextmanager_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pican2_board/python-can/test/network_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/pican2_board/python-can/test/network_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pican2_board/python-can/test/serial_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/pican2_board/python-can/test/serial_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pican2_board/python-can/test/simplecyclic_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/pican2_board/python-can/test/simplecyclic_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pican2_board/python-can/test/test_bit_timing.py" beforeDir="false" afterPath="$PROJECT_DIR$/pican2_board/python-can/test/test_bit_timing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pican2_board/python-can/test/test_cyclic_socketcan.py" beforeDir="false" afterPath="$PROJECT_DIR$/pican2_board/python-can/test/test_cyclic_socketcan.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pican2_board/python-can/test/test_message_sync.py" beforeDir="false" afterPath="$PROJECT_DIR$/pican2_board/python-can/test/test_message_sync.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pican2_board/python-can/test/test_systec.py" beforeDir="false" afterPath="$PROJECT_DIR$/pican2_board/python-can/test/test_systec.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pican2_board/python-can/test/test_vector.py" beforeDir="false" afterPath="$PROJECT_DIR$/pican2_board/python-can/test/test_vector.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pican2_board/python-can/test/test_viewer.py" beforeDir="false" afterPath="$PROJECT_DIR$/pican2_board/python-can/test/test_viewer.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1vE33hoPKh6frj9sV29sjFTPMzb" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0c5236f4-7c28-4532-8162-0266b9a39614" name="Default Changelist" comment="" />
+      <created>1626113223463</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1626113223463</updated>
+    </task>
+    <servers />
+  </component>
+</project>

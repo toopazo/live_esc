@@ -1,0 +1,171 @@
+Reaction to command: pwm test -c 12345678 -p 1300
+
+Motors 1 and 9 spin at half the RPM even though they received the same 1300 throttle
+The same happens if motors 1 and 3 are spund separately (pwm test -c 1 -p 1300)
+
+Additionally, sometime motoros would have problem starting up. Connecting all
+4 batteries seemed to have helped.
+
+[main] time 013.93 s ------------------------------
+[main] 11 id, 30.78 V, 10.09 (02.43) A, 2177.14 rpm, 44.0 degC, 1294.0 us, 34.0 perc 
+[main] 12 id, 30.93 V, 4.25 (00.93) A, 3874.29 rpm, 38.0 degC, 1290.0 us, 33.0 perc 
+[main] 13 id, 30.99 V, 1.0 (00.00) A, 2177.14 rpm, 44.0 degC, 1293.0 us, 33.0 perc 
+[main] 14 id, 30.99 V, 3.08 (01.43) A, 2087.14 rpm, 39.0 degC, 1292.0 us, 33.0 perc 
+[main] 15 id, 30.86 V, 7.96 (00.45) A, 2177.14 rpm, 43.0 degC, 1297.0 us, 34.0 perc 
+[main] 16 id, 31.12 V, 6.02 (01.83) A, 4135.71 rpm, 38.0 degC, 1296.0 us, 34.0 perc 
+[main] 17 id, 30.66 V, 1.0 (00.00) A, 0042.86 rpm, 37.0 degC, 1292.0 us, 21.0 perc 
+[main] 18 id, 30.84 V, 1.0 (00.00) A, 2130.00 rpm, 39.0 degC, 1295.0 us, 34.0 perc 
+[main] time 015.09 s ------------------------------
+[main] 11 id, 30.78 V, 10.06 (02.40) A, 2087.14 rpm, 44.0 degC, 1294.0 us, 34.0 perc 
+[main] 12 id, 30.99 V, 4.04 (00.72) A, 4264.29 rpm, 38.0 degC, 1290.0 us, 33.0 perc 
+[main] 13 id, 31.00 V, 1.0 (00.00) A, 2087.14 rpm, 44.0 degC, 1293.0 us, 33.0 perc 
+[main] 14 id, 30.99 V, 2.0 (00.35) A, 2087.14 rpm, 39.0 degC, 1292.0 us, 33.0 perc 
+[main] 15 id, 30.92 V, 7.93 (00.42) A, 2087.14 rpm, 43.0 degC, 1297.0 us, 34.0 perc 
+[main] 16 id, 31.13 V, 4.92 (00.73) A, 4307.14 rpm, 38.0 degC, 1296.0 us, 34.0 perc 
+[main] 17 id, 30.67 V, 2.0 (01.00) A, 0042.86 rpm, 37.0 degC, 1292.0 us, 30.0 perc 
+[main] 18 id, 30.86 V, 1.0 (00.00) A, 2087.14 rpm, 39.0 degC, 1295.0 us, 34.0 perc 
+[main] time 016.32 s ------------------------------
+[main] 11 id, 30.78 V, 10.14 (02.48) A, 2087.14 rpm, 44.0 degC, 1294.0 us, 34.0 perc 
+[main] 12 id, 30.95 V, 4.05 (00.73) A, 4264.29 rpm, 38.0 degC, 1290.0 us, 33.0 perc 
+[main] 13 id, 30.99 V, 1.0 (00.00) A, 2087.14 rpm, 44.0 degC, 1293.0 us, 33.0 perc 
+[main] 14 id, 30.99 V, 1.95 (00.30) A, 2087.14 rpm, 39.0 degC, 1292.0 us, 33.0 perc 
+[main] 15 id, 30.89 V, 10.9 (03.39) A, 2087.14 rpm, 43.0 degC, 1297.0 us, 34.0 perc 
+[main] 16 id, 31.15 V, 4.91 (00.72) A, 4264.29 rpm, 38.0 degC, 1296.0 us, 34.0 perc 
+[main] 17 id, 30.67 V, 1.0 (00.00) A, 0000.00 rpm, 37.0 degC, 1292.0 us, 33.0 perc 
+[main] 18 id, 30.86 V, 1.0 (00.00) A, 2087.14 rpm, 39.0 degC, 1295.0 us, 34.0 perc 
+[main] time 017.48 s ------------------------------
+[main] 11 id, 30.76 V, 10.05 (02.39) A, 2087.14 rpm, 44.0 degC, 1294.0 us, 34.0 perc 
+[main] 12 id, 30.96 V, 5.02 (01.70) A, 4264.29 rpm, 38.0 degC, 1290.0 us, 33.0 perc 
+[main] 13 id, 30.99 V, 1.0 (00.00) A, 2044.29 rpm, 44.0 degC, 1293.0 us, 33.0 perc 
+[main] 14 id, 30.99 V, 2.01 (00.36) A, 2044.29 rpm, 39.0 degC, 1292.0 us, 33.0 perc 
+[main] 15 id, 30.91 V, 7.9 (00.39) A, 2087.14 rpm, 43.0 degC, 1297.0 us, 34.0 perc 
+[main] 16 id, 31.15 V, 4.9 (00.71) A, 4307.14 rpm, 38.0 degC, 1296.0 us, 34.0 perc 
+[main] 17 id, 30.67 V, 1.0 (00.00) A, 0042.86 rpm, 37.0 degC, 1292.0 us, 33.0 perc 
+[main] 18 id, 30.86 V, 2.03 (01.03) A, 2087.14 rpm, 39.0 degC, 1295.0 us, 34.0 perc 
+[main] time 018.64 s ------------------------------
+[main] 11 id, 30.80 V, 10.13 (02.47) A, 2087.14 rpm, 44.0 degC, 1294.0 us, 34.0 perc 
+[main] 12 id, 30.95 V, 4.03 (00.71) A, 4264.29 rpm, 38.0 degC, 1290.0 us, 33.0 perc 
+[main] 13 id, 30.99 V, 1.0 (00.00) A, 2087.14 rpm, 44.0 degC, 1293.0 us, 33.0 perc 
+[main] 14 id, 30.98 V, 2.02 (00.37) A, 2044.29 rpm, 39.0 degC, 1292.0 us, 33.0 perc 
+[main] 15 id, 30.92 V, 7.96 (00.45) A, 2087.14 rpm, 43.0 degC, 1297.0 us, 34.0 perc 
+[main] 16 id, 31.13 V, 4.9 (00.71) A, 4307.14 rpm, 38.0 degC, 1296.0 us, 34.0 perc 
+[main] 17 id, 30.67 V, 1.0 (00.00) A, 0042.86 rpm, 37.0 degC, 1292.0 us, 33.0 perc 
+[main] 18 id, 30.86 V, 1.02 (00.02) A, 2087.14 rpm, 39.0 degC, 1295.0 us, 34.0 perc 
+[main] time 019.80 s ------------------------------
+[main] 11 id, 30.76 V, 10.06 (02.40) A, 2087.14 rpm, 43.0 degC, 1294.0 us, 34.0 perc 
+[main] 12 id, 30.95 V, 4.03 (00.71) A, 4264.29 rpm, 38.0 degC, 1290.0 us, 33.0 perc 
+[main] 13 id, 31.04 V, 1.0 (00.00) A, 2087.14 rpm, 44.0 degC, 1293.0 us, 33.0 perc 
+[main] 14 id, 30.95 V, 1.99 (00.34) A, 2044.29 rpm, 39.0 degC, 1292.0 us, 33.0 perc 
+[main] 15 id, 30.92 V, 7.95 (00.44) A, 2087.14 rpm, 43.0 degC, 1297.0 us, 34.0 perc 
+[main] 16 id, 31.15 V, 4.91 (00.72) A, 4307.14 rpm, 38.0 degC, 1296.0 us, 34.0 perc 
+[main] 17 id, 30.65 V, 2.0 (01.00) A, 0042.86 rpm, 37.0 degC, 1292.0 us, 33.0 perc 
+[main] 18 id, 30.84 V, 1.01 (00.01) A, 2087.14 rpm, 39.0 degC, 1295.0 us, 34.0 perc 
+[main] time 020.95 s ------------------------------
+[main] 11 id, 30.80 V, 10.11 (02.45) A, 2087.14 rpm, 43.0 degC, 1294.0 us, 34.0 perc 
+[main] 12 id, 30.93 V, 4.03 (00.71) A, 4264.29 rpm, 38.0 degC, 1290.0 us, 33.0 perc 
+[main] 13 id, 30.99 V, 1.0 (00.00) A, 2044.29 rpm, 43.0 degC, 1293.0 us, 33.0 perc 
+[main] 14 id, 30.99 V, 1.98 (00.33) A, 2044.29 rpm, 39.0 degC, 1292.0 us, 33.0 perc 
+[main] 15 id, 30.92 V, 7.91 (00.40) A, 2087.14 rpm, 43.0 degC, 1297.0 us, 34.0 perc 
+[main] 16 id, 31.13 V, 4.9 (00.71) A, 4307.14 rpm, 38.0 degC, 1296.0 us, 34.0 perc 
+[main] 17 id, 30.67 V, 1.0 (00.00) A, 0042.86 rpm, 37.0 degC, 1292.0 us, 33.0 perc 
+[main] 18 id, 30.86 V, 2.0 (01.00) A, 2087.14 rpm, 39.0 degC, 1295.0 us, 34.0 perc 
+[main] time 022.15 s ------------------------------
+[main] 11 id, 30.79 V, 10.08 (02.42) A, 2087.14 rpm, 43.0 degC, 1294.0 us, 34.0 perc 
+[main] 12 id, 30.95 V, 4.03 (00.71) A, 4264.29 rpm, 38.0 degC, 1290.0 us, 33.0 perc 
+[main] 13 id, 31.00 V, 1.0 (00.00) A, 2044.29 rpm, 43.0 degC, 1293.0 us, 33.0 perc 
+[main] 14 id, 30.99 V, 2.02 (00.37) A, 2044.29 rpm, 39.0 degC, 1292.0 us, 33.0 perc 
+[main] 15 id, 30.92 V, 7.88 (00.37) A, 2087.14 rpm, 42.0 degC, 1297.0 us, 34.0 perc 
+[main] 16 id, 31.12 V, 5.9 (01.71) A, 4307.14 rpm, 38.0 degC, 1296.0 us, 34.0 perc 
+[main] 17 id, 30.67 V, 1.0 (00.00) A, 0000.00 rpm, 37.0 degC, 1292.0 us, 33.0 perc 
+[main] 18 id, 30.86 V, 1.0 (00.00) A, 2087.14 rpm, 39.0 degC, 1295.0 us, 34.0 perc 
+[main] time 023.30 s ------------------------------
+[main] 11 id, 30.80 V, 10.1 (02.44) A, 2044.29 rpm, 43.0 degC, 1294.0 us, 34.0 perc 
+[main] 12 id, 30.93 V, 4.01 (00.69) A, 4264.29 rpm, 38.0 degC, 1290.0 us, 33.0 perc 
+[main] 13 id, 30.99 V, 1.0 (00.00) A, 2044.29 rpm, 43.0 degC, 1293.0 us, 33.0 perc 
+[main] 14 id, 30.99 V, 2.98 (01.33) A, 2044.29 rpm, 39.0 degC, 1292.0 us, 33.0 perc 
+[main] 15 id, 30.92 V, 10.93 (03.42) A, 2044.29 rpm, 42.0 degC, 1297.0 us, 34.0 perc 
+[main] 16 id, 31.14 V, 4.92 (00.73) A, 4307.14 rpm, 38.0 degC, 1296.0 us, 34.0 perc 
+[main] 17 id, 30.67 V, 1.0 (00.00) A, 0042.86 rpm, 37.0 degC, 1292.0 us, 33.0 perc 
+[main] 18 id, 30.86 V, 1.0 (00.00) A, 2087.14 rpm, 39.0 degC, 1295.0 us, 34.0 perc 
+[main] time 024.46 s ------------------------------
+[main] 11 id, 30.80 V, 10.13 (02.47) A, 2087.14 rpm, 43.0 degC, 1294.0 us, 34.0 perc 
+[main] 12 id, 30.95 V, 4.05 (00.73) A, 4264.29 rpm, 38.0 degC, 1290.0 us, 33.0 perc 
+[main] 13 id, 30.99 V, 2.0 (01.00) A, 2087.14 rpm, 43.0 degC, 1293.0 us, 33.0 perc 
+[main] 14 id, 30.99 V, 1.99 (00.34) A, 2044.29 rpm, 39.0 degC, 1292.0 us, 33.0 perc 
+[main] 15 id, 30.92 V, 7.94 (00.43) A, 2044.29 rpm, 42.0 degC, 1297.0 us, 34.0 perc 
+[main] 16 id, 31.16 V, 4.92 (00.73) A, 4307.14 rpm, 38.0 degC, 1296.0 us, 34.0 perc 
+[main] 17 id, 30.67 V, 1.0 (00.00) A, 0000.00 rpm, 37.0 degC, 1292.0 us, 33.0 perc 
+[main] 18 id, 30.86 V, 1.03 (00.03) A, 2087.14 rpm, 39.0 degC, 1295.0 us, 34.0 perc 
+[main] time 025.61 s ------------------------------
+[main] 11 id, 30.79 V, 10.07 (02.41) A, 2087.14 rpm, 43.0 degC, 1294.0 us, 34.0 perc 
+[main] 12 id, 30.96 V, 4.03 (00.71) A, 4264.29 rpm, 38.0 degC, 1290.0 us, 33.0 perc 
+[main] 13 id, 30.99 V, 1.0 (00.00) A, 2087.14 rpm, 43.0 degC, 1293.0 us, 33.0 perc 
+[main] 14 id, 30.99 V, 2.02 (00.37) A, 2044.29 rpm, 39.0 degC, 1292.0 us, 33.0 perc 
+[main] 15 id, 30.92 V, 7.88 (00.37) A, 2087.14 rpm, 42.0 degC, 1298.0 us, 34.0 perc 
+[main] 16 id, 31.13 V, 4.94 (00.75) A, 4307.14 rpm, 38.0 degC, 1296.0 us, 34.0 perc 
+[main] 17 id, 30.67 V, 1.0 (00.00) A, 0042.86 rpm, 37.0 degC, 1292.0 us, 33.0 perc 
+[main] 18 id, 30.86 V, 2.03 (01.03) A, 2087.14 rpm, 39.0 degC, 1295.0 us, 34.0 perc 
+[main] time 026.77 s ------------------------------
+[main] 11 id, 30.80 V, 13.14 (05.48) A, 2087.14 rpm, 43.0 degC, 1294.0 us, 34.0 perc 
+[main] 12 id, 30.96 V, 5.0 (01.68) A, 4264.29 rpm, 38.0 degC, 1290.0 us, 33.0 perc 
+[main] 13 id, 30.99 V, 1.0 (00.00) A, 2087.14 rpm, 43.0 degC, 1293.0 us, 33.0 perc 
+[main] 14 id, 30.99 V, 2.03 (00.38) A, 2044.29 rpm, 39.0 degC, 1292.0 us, 33.0 perc 
+[main] 15 id, 30.90 V, 7.92 (00.41) A, 2044.29 rpm, 42.0 degC, 1298.0 us, 34.0 perc 
+[main] 16 id, 31.15 V, 5.91 (01.72) A, 4307.14 rpm, 38.0 degC, 1296.0 us, 34.0 perc 
+[main] 17 id, 30.67 V, 1.0 (00.00) A, 0042.86 rpm, 37.0 degC, 1292.0 us, 33.0 perc 
+[main] 18 id, 30.86 V, 1.01 (00.01) A, 2087.14 rpm, 39.0 degC, 1295.0 us, 34.0 perc 
+[main] time 027.92 s ------------------------------
+[main] 11 id, 30.77 V, 10.05 (02.39) A, 2087.14 rpm, 43.0 degC, 1294.0 us, 34.0 perc 
+[main] 12 id, 30.95 V, 4.0 (00.68) A, 4264.29 rpm, 38.0 degC, 1290.0 us, 33.0 perc 
+[main] 13 id, 30.99 V, 1.0 (00.00) A, 2087.14 rpm, 43.0 degC, 1293.0 us, 33.0 perc 
+[main] 14 id, 30.96 V, 2.96 (01.31) A, 2044.29 rpm, 39.0 degC, 1292.0 us, 33.0 perc 
+[main] 15 id, 30.92 V, 10.95 (03.44) A, 2087.14 rpm, 42.0 degC, 1298.0 us, 34.0 perc 
+[main] 16 id, 31.18 V, 4.9 (00.71) A, 4307.14 rpm, 38.0 degC, 1296.0 us, 34.0 perc 
+[main] 17 id, 30.68 V, 1.0 (00.00) A, 0042.86 rpm, 37.0 degC, 1292.0 us, 33.0 perc 
+[main] 18 id, 30.84 V, 1.0 (00.00) A, 2087.14 rpm, 39.0 degC, 1295.0 us, 34.0 perc 
+[main] time 029.08 s ------------------------------
+[main] 11 id, 30.80 V, 10.12 (02.46) A, 2087.14 rpm, 43.0 degC, 1294.0 us, 34.0 perc 
+[main] 12 id, 30.99 V, 4.02 (00.70) A, 4307.14 rpm, 38.0 degC, 1290.0 us, 33.0 perc 
+[main] 13 id, 31.01 V, 1.0 (00.00) A, 2087.14 rpm, 43.0 degC, 1293.0 us, 33.0 perc 
+[main] 14 id, 30.99 V, 2.01 (00.36) A, 2044.29 rpm, 39.0 degC, 1292.0 us, 33.0 perc 
+[main] 15 id, 30.91 V, 7.93 (00.42) A, 2087.14 rpm, 42.0 degC, 1298.0 us, 34.0 perc 
+[main] 16 id, 31.11 V, 4.91 (00.72) A, 4307.14 rpm, 38.0 degC, 1296.0 us, 34.0 perc 
+[main] 17 id, 30.67 V, 1.0 (00.00) A, 0000.00 rpm, 37.0 degC, 1292.0 us, 33.0 perc 
+[main] 18 id, 30.86 V, 1.0 (00.00) A, 2087.14 rpm, 39.0 degC, 1295.0 us, 34.0 perc 
+[main] time 030.23 s ------------------------------
+[main] 11 id, 30.77 V, 10.05 (02.39) A, 2087.14 rpm, 43.0 degC, 1294.0 us, 34.0 perc 
+[main] 12 id, 30.96 V, 4.01 (00.69) A, 4307.14 rpm, 38.0 degC, 1290.0 us, 33.0 perc 
+[main] 13 id, 31.01 V, 1.0 (00.00) A, 2087.14 rpm, 43.0 degC, 1293.0 us, 33.0 perc 
+[main] 14 id, 30.99 V, 2.04 (00.39) A, 2044.29 rpm, 39.0 degC, 1292.0 us, 33.0 perc 
+[main] 15 id, 30.92 V, 7.89 (00.38) A, 2087.14 rpm, 42.0 degC, 1298.0 us, 34.0 perc 
+[main] 16 id, 31.14 V, 4.92 (00.73) A, 4307.14 rpm, 38.0 degC, 1296.0 us, 34.0 perc 
+[main] 17 id, 30.67 V, 1.0 (00.00) A, 0042.86 rpm, 37.0 degC, 1292.0 us, 33.0 perc 
+[main] 18 id, 30.86 V, 1.0 (00.00) A, 2087.14 rpm, 39.0 degC, 1295.0 us, 34.0 perc 
+[main] time 031.39 s ------------------------------
+[main] 11 id, 30.79 V, 10.06 (02.40) A, 2087.14 rpm, 43.0 degC, 1294.0 us, 34.0 perc 
+[main] 12 id, 30.93 V, 4.03 (00.71) A, 4264.29 rpm, 38.0 degC, 1290.0 us, 33.0 perc 
+[main] 13 id, 30.99 V, 1.0 (00.00) A, 2044.29 rpm, 43.0 degC, 1293.0 us, 33.0 perc 
+[main] 14 id, 30.99 V, 2.01 (00.36) A, 2044.29 rpm, 39.0 degC, 1292.0 us, 33.0 perc 
+[main] 15 id, 30.92 V, 7.94 (00.43) A, 2044.29 rpm, 42.0 degC, 1298.0 us, 34.0 perc 
+[main] 16 id, 31.13 V, 4.92 (00.73) A, 4307.14 rpm, 38.0 degC, 1296.0 us, 34.0 perc 
+[main] 17 id, 30.67 V, 1.0 (00.00) A, 0000.00 rpm, 37.0 degC, 1292.0 us, 33.0 perc 
+[main] 18 id, 30.86 V, 1.01 (00.01) A, 2087.14 rpm, 39.0 degC, 1295.0 us, 34.0 perc 
+[main] time 032.54 s ------------------------------
+[main] 11 id, 30.77 V, 10.09 (02.43) A, 2087.14 rpm, 43.0 degC, 1294.0 us, 34.0 perc 
+[main] 12 id, 30.94 V, 4.01 (00.69) A, 4307.14 rpm, 38.0 degC, 1290.0 us, 33.0 perc 
+[main] 13 id, 31.00 V, 1.0 (00.00) A, 2087.14 rpm, 43.0 degC, 1293.0 us, 33.0 perc 
+[main] 14 id, 30.99 V, 2.0 (00.35) A, 2087.14 rpm, 40.0 degC, 1292.0 us, 33.0 perc 
+[main] 15 id, 30.92 V, 10.95 (03.44) A, 2087.14 rpm, 42.0 degC, 1298.0 us, 34.0 perc 
+[main] 16 id, 31.16 V, 4.92 (00.73) A, 4307.14 rpm, 38.0 degC, 1296.0 us, 34.0 perc 
+[main] 17 id, 30.67 V, 1.0 (00.00) A, 0042.86 rpm, 37.0 degC, 1292.0 us, 33.0 perc 
+[main] 18 id, 30.86 V, 1.02 (00.02) A, 2087.14 rpm, 39.0 degC, 1295.0 us, 34.0 perc 
+[main] time 033.70 s ------------------------------
+[main] 11 id, 30.77 V, 10.08 (02.42) A, 2087.14 rpm, 43.0 degC, 1294.0 us, 34.0 perc 
+[main] 12 id, 30.99 V, 4.0 (00.68) A, 4264.29 rpm, 38.0 degC, 1290.0 us, 33.0 perc 
+[main] 13 id, 30.99 V, 1.0 (00.00) A, 2087.14 rpm, 42.0 degC, 1293.0 us, 33.0 perc 
+[main] 14 id, 30.98 V, 2.99 (01.34) A, 2044.29 rpm, 41.0 degC, 1292.0 us, 33.0 perc 
+[main] 15 id, 30.91 V, 7.89 (00.38) A, 2087.14 rpm, 42.0 degC, 1298.0 us, 34.0 perc 
+[main] 16 id, 31.13 V, 4.93 (00.74) A, 4307.14 rpm, 38.0 degC, 1296.0 us, 34.0 perc 
+[main] 17 id, 30.68 V, 1.0 (00.00) A, 0042.86 rpm, 37.0 degC, 1292.0 us, 33.0 perc 
+[main] 18 id, 30.85 V, 1.03 (00.03) A, 2087.14 rpm, 39.0 degC, 1295.0 us, 34.0 perc 
+
