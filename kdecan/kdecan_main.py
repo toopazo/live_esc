@@ -35,7 +35,8 @@ class KDEcan:
         # create a kdecan_bus instance
         # many other interfaces are supported as well (see below)
         self.kdecan_bus = can.Bus(interface='socketcan', channel='can0',
-                                  receive_own_messages=False)
+                                  receive_own_messages=False,
+                                  is_extended_id=True)
         self.kdecan_recv_timeout = 1    # 0.5
         self.kdecan_send_timeout = 0.2  # 0.5
 
@@ -237,8 +238,9 @@ class KDEcan:
         arbitrid = int(arbitrid, 16)
 
         # send a message
-        message = can.Message(arbitration_id=arbitrid, is_extended_id=True,
-                              data=data_arr)
+        # message = can.Message(arbitration_id=arbitrid, is_extended_id=True,
+        #                       data=data_arr)
+        message = can.Message(arbitration_id=arbitrid, data=data_arr)
 
         return message
 

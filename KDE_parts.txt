@@ -1,0 +1,35 @@
+
+## ESCs
+    KDE-UAS85UVC
+        8 units,    Firefly (Tomas)
+    KDE-UAS75HVC
+        8 units,    AVIA lab (Tomas),   spare parts
+        2 units,    Testing-arm (Raja)
+    KDE-UAS55HVC
+        8 units,    AVIA lab (Tomas),   spare parts
+    Phoenix Edge HV40
+        8 units,    AVIA lab (Tomas),   spare parts
+
+## Motors 
+    KDE6213XF-185
+        8 units,    Firefly (Tomas)
+        2 units,    Testing-arm (Raja)
+        3 units,    AVIA lab (Tomas),   spare parts
+        1 units,    AVIA lab (Tomas),   defective part        
+    KDE7208XF-110
+        4 units,    AVIA lab (Tomas),   spare parts
+    
+## Propellers
+    KDE-CF245-DP
+        8 units,    Firefly (Tomas)
+        8 units,    AVIA lab (Tomas),   spare parts
+    KDE-CF245-DP
+        2 units,    AVIA lab (Tomas),   spare parts
+        
+## Others
+    Pixhawk 4
+        1 units,    AVIA lab (Tomas),   spare parts
+    HolyBro Telemetry Radio
+        2 units,    AVIA lab (Tomas),   spare parts               
+        
+
