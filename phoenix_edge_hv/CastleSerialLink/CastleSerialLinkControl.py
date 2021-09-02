@@ -187,6 +187,7 @@ class SerialLinkI2C(SerialLink):
         # Write an array of registers
         data = [b1, b0]
         data = self.append_checksum(data)
+        data = list(data)
         print('data %s' % data)
         bus.write_i2c_block_data(address, reg_write_throttle, data)
         block = bus.read_i2c_block_data(address, reg_write_throttle, rlen)
