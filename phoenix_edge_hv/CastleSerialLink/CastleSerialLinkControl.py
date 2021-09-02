@@ -190,7 +190,12 @@ class SerialLinkI2C(SerialLink):
         data = list(data)
         print('data %s' % data)
         bus.write_i2c_block_data(address, reg_write_throttle, data)
-        block = bus.read_i2c_block_data(address, reg_write_throttle, rlen)
+        # block = bus.read_i2c_block_data(address, reg_write_throttle, rlen)
+        block = bus.read_byte(address)
+        print('block %s' % block)
+        block = bus.read_byte(address)
+        print('block %s' % block)
+        block = bus.read_byte(address)
         print('block %s' % block)
 
         bus.close()
