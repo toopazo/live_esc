@@ -183,11 +183,11 @@ class SerialLinkI2C(SerialLink):
         # block = bus.read_i2c_block_data(i2c_addr=add, register=reg, length=3)
         msg = i2c_msg.read(address=add, length=rlen)
         bus.i2c_rdwr(msg)
-        block = msg.data.contents.block[1:rlen + 1]
-        # for value in msg:
-        #     print(value)
+        # block = msg.data.contents.block[1:rlen + 1]
+        for value in msg:
+            print(value)
         # msg.data.contents.block[1:length + 1]
         # Returned value is a list of 16 bytes
-        print('block %s' % block)
+        # print('block %s' % block)
 
         bus.close()
