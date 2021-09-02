@@ -97,5 +97,6 @@ if __name__ == "__main__":
     # main_collect_data()
     # main_read_data()
     serlink_i2c = SerialLinkI2C('')
-    serlink_i2c.simple_test()
+    serlink_i2c.simple_test_smbus()
+    # serlink_i2c.simple_test_smbus2()
 
