@@ -194,5 +194,4 @@ class SerialLinkI2C(SerialLink):
         #     print(value)
         # msg.data.contents.block[1:length + 1]
 
-
         bus.close()
