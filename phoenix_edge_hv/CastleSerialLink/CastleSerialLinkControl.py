@@ -1,6 +1,6 @@
 import numpy as np
-# from smbus2 import SMBus, i2c_msg
-from smbus import SMBus
+from smbus2 import SMBus, i2c_msg
+# from smbus import SMBus
 
 
 class SerialLink:
