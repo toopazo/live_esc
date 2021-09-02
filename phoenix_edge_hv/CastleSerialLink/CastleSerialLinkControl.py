@@ -155,7 +155,7 @@ class SerialLinkI2C(SerialLink):
     def simple_test(self):
         # Open i2c bus 1 and read one byte from address 80, offset 0
         bus = SMBus(1)
-        add = int('0c', 16)
+        add = int('0b', 16)
         var = 'voltage'
         reg = self.register_dictionary[var]
 
