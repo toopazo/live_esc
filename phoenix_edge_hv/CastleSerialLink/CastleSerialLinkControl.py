@@ -160,7 +160,7 @@ class SerialLinkI2C(SerialLink):
         var = 'voltage'
         reg = self.register_dictionary[var]
         wlen = 5
-        rlen = 2
+        rlen = 3
 
         # b = bus.read_byte_data(i2c_addr=80, register=0)
         # print(b)
