@@ -1,5 +1,5 @@
 import numpy as np
-from smbus2 import SMBus
+from smbus2 import SMBus, i2c_msg
 
 
 class SerialLink:
@@ -155,7 +155,7 @@ class SerialLinkI2C(SerialLink):
     def simple_test(self):
         # Open i2c bus 1 and read one byte from address 80, offset 0
         bus = SMBus(1)
-        bus.open(1)
+        # bus.open(1)
         add = int('0b', 16)
         var = 'voltage'
         reg = self.register_dictionary[var]
@@ -178,8 +178,13 @@ class SerialLinkI2C(SerialLink):
         print('data %s' % data)
 
         # Read a block of 3 bytes from address 80, offset 0
-        block = bus.read_i2c_block_data(i2c_addr=add, register=reg, length=3)
+        # block = bus.read_i2c_block_data(i2c_addr=add, register=reg, length=3)
+        msg = i2c_msg.read(address=add, length=3)
+        bus.i2c_rdwr(msg)
+        for value in msg:
+            print(value)
+        # msg.data.contents.block[1:length + 1]
         # Returned value is a list of 16 bytes
-        print('block %s' % block)
+        # print('block %s' % block)
 
         bus.close()
