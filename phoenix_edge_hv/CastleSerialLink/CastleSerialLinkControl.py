@@ -174,20 +174,22 @@ class SerialLinkI2C(SerialLink):
                       0, 0]
         read_array = self.append_checksum(read_array)
 
-        # Write a block of 8 bytes to address 80 from offset 0
-        data = read_array[2:]
-        bus.write_i2c_block_data(i2c_addr=add, register=reg, data=data)
-        print('data %s' % data)
+        # # Write a block of 8 bytes to address 80 from offset 0
+        # data = read_array[2:]
+        # bus.write_i2c_block_data(i2c_addr=add, register=reg, data=data)
+        # print('data %s' % data)
 
         # Read a block of 3 bytes from address 80, offset 0
-        # block = bus.read_i2c_block_data(i2c_addr=add, register=reg, length=3)
-        msg = i2c_msg.read(address=add, length=rlen)
-        bus.i2c_rdwr(msg)
-        # block = msg.data.contents.block[1:rlen + 1]
-        for value in msg:
-            print(value)
-        # msg.data.contents.block[1:length + 1]
+        block = bus.read_i2c_block_data(i2c_addr=add, register=reg, length=3)
         # Returned value is a list of 16 bytes
-        # print('block %s' % block)
+        print('block %s' % block)
+
+        # msg = i2c_msg.read(address=add, length=rlen)
+        # bus.i2c_rdwr(msg)
+        # # block = msg.data.contents.block[1:rlen + 1]
+        # for value in msg:
+        #     print(value)
+        # msg.data.contents.block[1:length + 1]
+
 
         bus.close()
