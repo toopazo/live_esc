@@ -159,6 +159,8 @@ class SerialLinkI2C(SerialLink):
         add = int('0b', 16)
         var = 'voltage'
         reg = self.register_dictionary[var]
+        wlen = 5
+        rlen = 2
 
         # b = bus.read_byte_data(i2c_addr=80, register=0)
         # print(b)
@@ -179,12 +181,13 @@ class SerialLinkI2C(SerialLink):
 
         # Read a block of 3 bytes from address 80, offset 0
         # block = bus.read_i2c_block_data(i2c_addr=add, register=reg, length=3)
-        msg = i2c_msg.read(address=add, length=3)
+        msg = i2c_msg.read(address=add, length=rlen)
         bus.i2c_rdwr(msg)
-        for value in msg:
-            print(value)
+        block = msg.data.contents.block[1:rlen + 1]
+        # for value in msg:
+        #     print(value)
         # msg.data.contents.block[1:length + 1]
         # Returned value is a list of 16 bytes
-        # print('block %s' % block)
+        print('block %s' % block)
 
         bus.close()
