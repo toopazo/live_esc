@@ -156,9 +156,9 @@ class SerialLinkI2C(SerialLink):
     def simple_test_smbus(self):
         bus = SMBus(1)
         # 7 bit address (will be left shifted to add the read write bit)
-        _address = 0x0b
-        _reg_read_voltage = self.register_dictionary['voltage']
-        _reg_write_throttle = self.register_dictionary['write throttle']
+        address = 0x0b
+        reg_read_voltage = self.register_dictionary['voltage']
+        reg_write_throttle = self.register_dictionary['write throttle']
 
         #          76543210
         # add = int('00001011', 2)  # address 11
@@ -185,11 +185,12 @@ class SerialLinkI2C(SerialLink):
         b0 = int('00010000', 2)
 
         # Write an array of registers
-        write_value = [b1, b0]
-        write_value = self.append_checksum(write_value)
-        bus.write_i2c_block_data(_address, _reg_write_throttle,
-                                 write_value)
-        bus.read_i2c_block_data(_address, _reg_write_throttle, rlen)
+        data = [b1, b0]
+        data = self.append_checksum(data)
+        print('data %s' % data)
+        bus.write_i2c_block_data(address, reg_write_throttle, data)
+        block = bus.read_i2c_block_data(address, reg_write_throttle, rlen)
+        print('block %s' % block)
 
         bus.close()
 
@@ -199,7 +200,7 @@ class SerialLinkI2C(SerialLink):
         # bus.open(1)
         add = int('0b', 16)
         # var = 'voltage'
-        var  = 'write throttle'
+        var = 'write throttle'
         reg = self.register_dictionary[var]
         wlen = 5
         rlen = 3
