@@ -3,7 +3,7 @@ import serial
 from datetime import datetime
 import pytz
 import pickle
-from  CastleSerialLinkControl import SerialLink
+from  CastleSerialLinkControl import SerialLink, SerialLinkI2C
 
 
 class EscSerialLink(SerialLink):
@@ -94,5 +94,7 @@ def main_read_data():
 
 
 if __name__ == "__main__":
-    main_collect_data()
+    # main_collect_data()
     # main_read_data()
+    serlink_i2c = SerialLinkI2C('')
+
