@@ -166,7 +166,7 @@ class SerialLinkI2C(SerialLink):
         # byte 2 is the register address
         # bytes 3-4 are ignored by the serial link since we are reading
         # byte 5 is a checksum
-        read_array = [self.device_id,
+        read_array = [add,
                       self.register_dictionary[var],
                       0, 0]
         read_array = self.append_checksum(read_array)
