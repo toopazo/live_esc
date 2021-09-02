@@ -157,7 +157,8 @@ class SerialLinkI2C(SerialLink):
         bus = SMBus(1)
         # bus.open(1)
         add = int('0b', 16)
-        var = 'voltage'
+        # var = 'voltage'
+        var  = 'write throttle'
         reg = self.register_dictionary[var]
         wlen = 5
         rlen = 3
@@ -169,20 +170,22 @@ class SerialLinkI2C(SerialLink):
         # byte 2 is the register address
         # bytes 3-4 are ignored by the serial link since we are reading
         # byte 5 is a checksum
+        b1 = int('00100111', 2)    # 10000 = 00100111 00010000
+        b0 = int('00010000', 2)
         read_array = [add,
                       self.register_dictionary[var],
-                      0, 0]
+                      b1, b0]
         read_array = self.append_checksum(read_array)
 
         # # Write a block of 8 bytes to address 80 from offset 0
-        # data = read_array[2:]
-        # bus.write_i2c_block_data(i2c_addr=add, register=reg, data=data)
-        # print('data %s' % data)
+        data = read_array[2:]
+        bus.write_i2c_block_data(i2c_addr=add, register=reg, data=data)
+        print('data %s' % data)
 
-        # Read a block of 3 bytes from address 80, offset 0
-        block = bus.read_i2c_block_data(i2c_addr=add, register=reg, length=3)
-        # Returned value is a list of 16 bytes
-        print('block %s' % block)
+        # # Read a block of 3 bytes from address 80, offset 0
+        # block = bus.read_i2c_block_data(i2c_addr=add, register=reg, length=3)
+        # # Returned value is a list of 16 bytes
+        # print('block %s' % block)
 
         # msg = i2c_msg.read(address=add, length=rlen)
         # bus.i2c_rdwr(msg)
