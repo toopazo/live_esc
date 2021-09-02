@@ -97,4 +97,5 @@ if __name__ == "__main__":
     # main_collect_data()
     # main_read_data()
     serlink_i2c = SerialLinkI2C('')
+    serlink_i2c.simple_test()
 
