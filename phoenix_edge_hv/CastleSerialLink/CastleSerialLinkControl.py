@@ -174,11 +174,11 @@ class SerialLinkI2C(SerialLink):
         # Write a block of 8 bytes to address 80 from offset 0
         data = read_array[2:]
         bus.write_i2c_block_data(i2c_addr=add, register=reg, data=data)
-        print('data ' + data)
+        print('data %s' % data)
 
         # Read a block of 3 bytes from address 80, offset 0
         block = bus.read_i2c_block_data(i2c_addr=add, register=reg, length=3)
         # Returned value is a list of 16 bytes
-        print('block ' + block)
+        print('block %s' % block)
 
         bus.close()
