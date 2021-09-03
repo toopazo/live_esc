@@ -1,6 +1,7 @@
 import numpy as np
 from smbus2 import SMBus, i2c_msg
 # from smbus import SMBus
+import wiringpi
 
 
 class SerialLink:
@@ -153,6 +154,53 @@ class SerialLink:
 
 
 class SerialLinkI2C(SerialLink):
+    def simple_test_wiringpi(self):
+        bus = SMBus(1)
+        # 7 bit address (will be left shifted to add the read write bit)
+        address = 0x0b
+        reg_read_voltage = self.register_dictionary['voltage']
+        reg_write_throttle = self.register_dictionary['write throttle']
+
+        #          76543210
+        # add = int('00001011', 2)  # address 11
+        # add = int('00010110', 2)  # address 11 + write bit
+        # add = int('00010111', 2)  # address 11 + read bit
+        # add = int('00001100', 2)  # address 12
+
+        # var = 'voltage'
+        var = 'write throttle'
+        reg = self.register_dictionary[var]
+        wlen = 5
+        rlen = 3
+
+        # b = bus.read_byte_data(i2c_addr=80, register=0)
+        # print(b)
+
+        # byte 1 is the 7bit device address
+        # byte 2 is the register address
+        # bytes 3-4 are ignored by the serial link since we are reading
+        # byte 5 is a checksum
+
+        # 10000 = 00100111 00010000
+        b1 = int('00100111', 2)
+        b0 = int('00010000', 2)
+
+        # Write an array of registers
+        data = [b1, b0]
+        data = self.append_checksum(data)
+        data = list(data)
+        print('data %s' % data)
+        bus.write_i2c_block_data(address, reg_write_throttle, data)
+        # block = bus.read_i2c_block_data(address, reg_write_throttle, rlen)
+        block = bus.read_byte(address)
+        print('block %s' % block)
+        block = bus.read_byte(address)
+        print('block %s' % block)
+        block = bus.read_byte(address)
+        print('block %s' % block)
+
+        bus.close()
+
     def simple_test_smbus(self):
         bus = SMBus(1)
         # 7 bit address (will be left shifted to add the read write bit)
@@ -218,7 +266,7 @@ class SerialLinkI2C(SerialLink):
         # byte 2 is the register address
         # bytes 3-4 are ignored by the serial link since we are reading
         # byte 5 is a checksum
-        b1 = int('00100111', 2)    # 10000 = 00100111 00010000
+        b1 = int('00100111', 2)    # d10000 = 00100111 00010000 = d39 d16
         b0 = int('00010000', 2)
         read_array = [add,
                       self.register_dictionary[var],
