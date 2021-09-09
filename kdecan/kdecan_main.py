@@ -422,4 +422,5 @@ if __name__ == '__main__':
     uesc_arr = [11, 12]     # [11, 16]
     uperiod = 0.1
     # kdecan.live_data(uesc_arr, uperiod, ufilename)
-    kdecan.get_esc_info(12)
+    umsg = kdecan.get_esc_info(12)
+    print(umsg)
