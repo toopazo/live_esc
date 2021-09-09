@@ -75,9 +75,9 @@ class ParseMsg:
     def parse_esc_info(msg):
         if msg is None:
             return None
-        # hexstr = ParseMsg.bytearray_to_hexstr(msg.data)
-        # escinfo = hexstr
-        escinfo = [int(x) for x in msg.data]
+        hexstr = ParseMsg.bytearray_to_hexstr(msg.data)
+        escinfo = hexstr
+        # escinfo = [int(x) for x in msg.data]
 
         return escinfo
 
