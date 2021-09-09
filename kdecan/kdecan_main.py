@@ -436,13 +436,15 @@ class KDEcan:
 if __name__ == '__main__':
     kdecan = KDEcan()
 
-    ufilename = sys.argv[1]
-    uesc_arr = [12]     # [11, 16]
-    uperiod = 0.1
+    # ufilename = sys.argv[1]
+    # uesc_arr = [12]     # [11, 16]
+    # uperiod = 0.1
     # kdecan.live_data(uesc_arr, uperiod, ufilename)
-    umsg = kdecan.get_data_esc(12)
+
+    uesc = int(sys.argv[1])
+    umsg = kdecan.get_data_esc(uesc)
     umsg = kdecan.data_esc_to_str(umsg)
     print(umsg)
-    umsg = kdecan.get_esc_info(12)
-    print(umsg)
-    print([int(x, 16) for x in umsg])
+    # umsg = kdecan.get_esc_info(12)
+    # print(umsg)
+    # print([int(x, 16) for x in umsg])
