@@ -77,7 +77,7 @@ class ParseMsg:
             return None
         # hexstr = ParseMsg.bytearray_to_hexstr(msg.data)
         # escinfo = hexstr
-        escinfo = [int(x) for x in msg]
+        escinfo = [int(x) for x in msg.data]
 
         return escinfo
 
