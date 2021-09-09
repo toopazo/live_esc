@@ -441,10 +441,11 @@ if __name__ == '__main__':
     # uperiod = 0.1
     # kdecan.live_data(uesc_arr, uperiod, ufilename)
 
-    uesc = int(sys.argv[1])
-    umsg = kdecan.get_data_esc(uesc)
-    umsg = kdecan.data_esc_to_str(umsg)
-    print(umsg)
+    # uesc = int(sys.argv[1])
+    for uesc in range(11, 19):
+        umsg = kdecan.get_data_esc(uesc)
+        umsg = kdecan.data_esc_to_str(umsg)
+        print(umsg)
     # umsg = kdecan.get_esc_info(12)
     # print(umsg)
     # print([int(x, 16) for x in umsg])
