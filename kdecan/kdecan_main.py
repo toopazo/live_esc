@@ -419,9 +419,11 @@ if __name__ == '__main__':
     kdecan = KDEcan()
 
     ufilename = sys.argv[1]
-    uesc_arr = [11, 12]     # [11, 16]
+    uesc_arr = [12]     # [11, 16]
     uperiod = 0.1
     # kdecan.live_data(uesc_arr, uperiod, ufilename)
+    umsg = kdecan.get_data_esc_arr(uesc_arr)
+    print(umsg)
     umsg = kdecan.get_esc_info(12)
     print(umsg)
     print([int(x, 16) for x in umsg])
