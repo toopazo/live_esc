@@ -180,18 +180,36 @@ class KDEcan:
             throttle = throttle_arr[i]
             self.set_pwm(throttle, targetid)
 
+    def get_data_esc(self, targetid):
+        telap = round(time.time() - self.time0, 4)
+        [voltage, current, rpm, temp, warning] = self.get_vcrtw(targetid)
+        inthrottle = self.get_inputthrottle(targetid)
+        outthrottle = self.get_outputthrottle(targetid)
+        # self.get_mcuid(targetid)
+
+        resp = [telap, targetid,
+                voltage, current, rpm, temp, warning,
+                inthrottle, outthrottle]
+        return resp
+
+    def data_esc_to_str(self, resp):
+        [telap, targetid,
+         voltage, current, rpm, temp, warning,
+         inthrottle, outthrottle] = resp
+
+        #   arg = "%s, %s, %04.2f, %s, %07.2f, %s, %s, %s, %s " % \
+        arg = "%s s, %s escid, " \
+              "%04.2f V, %s A, %07.2f rpm, %s degC, %s, " \
+              "%s us, %s perc " % \
+              (telap, targetid,
+               voltage, current, rpm, temp, warning,
+               inthrottle, outthrottle)
+        return arg
+
     def get_data_esc_arr(self, esc_arr):
         resp_arr = []
         for targetid in esc_arr:
-            telap = round(time.time() - self.time0, 4)
-            [voltage, current, rpm, temp, warning] = self.get_vcrtw(targetid)
-            inthrottle = self.get_inputthrottle(targetid)
-            outthrottle = self.get_outputthrottle(targetid)
-            # self.get_mcuid(targetid)
-
-            resp = [telap, targetid,
-                    voltage, current, rpm, temp, warning,
-                    inthrottle, outthrottle]
+            resp = self.get_data_esc(targetid)
             resp_arr.append(resp)
 
         return resp_arr
@@ -422,7 +440,8 @@ if __name__ == '__main__':
     uesc_arr = [12]     # [11, 16]
     uperiod = 0.1
     # kdecan.live_data(uesc_arr, uperiod, ufilename)
-    umsg = kdecan.get_data_esc_arr(uesc_arr)
+    umsg = kdecan.get_data_esc(12)
+    umsg = kdecan.data_esc_to_str(umsg)
     print(umsg)
     umsg = kdecan.get_esc_info(12)
     print(umsg)
