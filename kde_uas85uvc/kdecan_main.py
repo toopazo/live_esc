@@ -3,6 +3,7 @@
 import can
 import signal
 import sys
+import os
 import time
 import numpy as np
 from kdecan_parseMsg import ParseMsg
@@ -434,6 +435,10 @@ class KDEcan:
 
 
 if __name__ == '__main__':
+    os.system('sudo ip link set can0 down')
+    os.system('sudo ip link set can0 type can bitrate 500000')
+    os.system('sudo ip link set can0 up')
+
     kdecan = KDEcan()
 
     # ufilename = sys.argv[1]

@@ -16,7 +16,8 @@ The setup for this ESC was
 - A voltage regulator to power the Pixhawk's servo rail with 5 V
 
 For this type of ESC I made use of the existing repo https://github.com/math2peters/CastleSerialLink
-The code from ```math2peters``` works well, but I was not able to get the ```TTL Serial (with PPM Input)``` mode to work.
+The code from ```math2peters``` works well, but I have not being able to get the ```TTL Serial (with PPM Input)``` mode to work.
+Connecting the Pixhawk's port```IO PWM out``` for motor 1 (it could have been any) into pin ```D``` of the Serial Link produces no response from the ESC. There seems to be a problem -on the Castle Creation side- intepreting the throttle signal.       
 
 ## KDE UAS series
 ![](kde_uas85uvc/kde_uas85uvc.jpg)
