@@ -1,6 +1,9 @@
 # live_esc
 Protocols for reading live telemetry from Electronic Speed Controllers (ESC). This is important in the context of UAV and Drone technology.
 
+|Más información en https://toopazo.github.io/postscyt/Programar-ESC/|
+|---|
+
 ## Phoenix Edge HV series
 ![](phoenix_edge_hv_80/phoenix_edge_hv_80.jpg)
 
@@ -31,4 +34,7 @@ The setup for this ESC was
 - Laptop with python 3  
 - 4s2p Battery (Two 4S batteries in series => 29.6 V)
 - A voltage regulator to power the Pixhawk's servo rail with 5 V
+
+The Inno-Maker board was a very convenient way to communicate with ESC from a laptop without having to spend too much work on getting the CAN bus to work.
+I implemented the KDECAN protocol as a python class. Tests were successful at retrieving live data.
 

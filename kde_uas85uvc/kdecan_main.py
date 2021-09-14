@@ -193,6 +193,11 @@ class KDEcan:
                 inthrottle, outthrottle]
         return resp
 
+    def get_data_esc_header(self):
+        arg = "time, escid, voltage, current, rpm, temp, warn, thtl_in, thtl_out"
+        units = "s, escid, V, A, rpm, degC, str, us, %s perc "
+        return arg
+
     def data_esc_to_str(self, resp):
         [telap, targetid,
          voltage, current, rpm, temp, warning,
@@ -435,9 +440,9 @@ class KDEcan:
 
 
 if __name__ == '__main__':
-    os.system('sudo ip link set can0 down')
-    os.system('sudo ip link set can0 type can bitrate 500000')
-    os.system('sudo ip link set can0 up')
+    # os.system('sudo ip link set can0 down')
+    # os.system('sudo ip link set can0 type can bitrate 500000')
+    # os.system('sudo ip link set can0 up')
 
     kdecan = KDEcan()
 
