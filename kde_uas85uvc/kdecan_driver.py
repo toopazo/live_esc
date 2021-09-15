@@ -246,6 +246,7 @@ class KdeCanAPI:
             is_extended_id=True)
         self.kdecan_recv_timeout = 1    # 0.5
         self.kdecan_send_timeout = 0.2  # 0.5
+        self.kdecan_max_num_tries = 5
 
     @staticmethod
     def check_can0_status():
@@ -342,7 +343,8 @@ class KdeCanAPI:
 
         return resp_arr
 
-    def get_message(self, targetid, objctadd, data_arr):
+    @staticmethod
+    def assemble_can_message(targetid, objctadd, data_arr):
         # CAN Bus Extended Frame Structure (CAN 2.0B)
         # A kdecan_bus frame consists of an extended frame ID and a data frame.
         # The extended frame ID consists of 5 bits for priority, 8 bits for the
@@ -390,7 +392,8 @@ class KdeCanAPI:
 
         return message
 
-    def check_recv_msg(self, msg, targetid, objctadd):
+    @staticmethod
+    def check_recv_msg(msg, targetid, objctadd):
         try:
             arbitration_id = msg.arbitration_id
         except AttributeError:
@@ -410,152 +413,102 @@ class KdeCanAPI:
         else:
             return True
 
+    def robust_msg_transmition(self, message, targetid, objctadd):
+        # self.kdecan_bus.send(message, timeout=self.kdecan_send_timeout)
+        # msg = self.kdecan_bus.recv(timeout=self.kdecan_recv_timeout)
+        # self.check_recv_msg(msg, targetid, objctadd)
+        # return ParseMsg.parse_current(msg)
+
+        # self.kdecan_bus.send(message, timeout=self.kdecan_send_timeout)
+        # msg = self.kdecan_bus.recv(timeout=self.kdecan_recv_timeout)
+        # self.check_recv_msg(msg, targetid, objctadd)
+        # return ParseMsg.parse_restartesc(msg)
+
+        for i in range(0, self.kdecan_max_num_tries):
+            self.kdecan_bus.send(message, timeout=self.kdecan_send_timeout)
+            msg = self.kdecan_bus.recv(timeout=self.kdecan_recv_timeout)
+            if KdeCanAPI.check_recv_msg(msg, targetid, objctadd):
+                return ParseMsg.parse_recv_msg(msg, objctadd)
+        return None
+
     def get_esc_info(self, targetid):
         objctadd = 0x00
         data_arr = [0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]
-        message = self.get_message(targetid, objctadd, data_arr)
+        message = KdeCanAPI.assemble_can_message(targetid, objctadd, data_arr)
+        return self.robust_msg_transmition(message, targetid, objctadd)
 
-        # self.kdecan_bus.send(message, timeout=self.kdecan_send_timeout)
-        # # iterate over received messages
-        # t0 = time.time()
-        # for msg in self.kdecan_bus:
-        #     voltage = self.parse_voltage(msg)
-        #     telapsed = time.time() - t0
-        #     time.sleep(1)
-        #     print("[get_voltage] telapsed %mysched " % telapsed)
-        #     if telapsed >= timeout:
-        #         return voltage
+    def get_voltage(self, targetid):
+        objctadd = 0x02
+        data_arr = [0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]
+        message = KdeCanAPI.assemble_can_message(targetid, objctadd, data_arr)
+        return self.robust_msg_transmition(message, targetid, objctadd)
 
-        self.kdecan_bus.send(message, timeout=self.kdecan_send_timeout)
-        msg = self.kdecan_bus.recv(timeout=self.kdecan_recv_timeout)
-        self.check_recv_msg(msg, targetid, objctadd)
-        return ParseMsg.parse_esc_info(msg)
+    def get_current(self, targetid):
+        objctadd = 0x03
+        data_arr = [0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]
+        message = KdeCanAPI.assemble_can_message(targetid, objctadd, data_arr)
+        return self.robust_msg_transmition(message, targetid, objctadd)
+
+    def get_rpm(self, targetid):
+        objctadd = 0x04
+        data_arr = [0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]
+        message = KdeCanAPI.assemble_can_message(targetid, objctadd, data_arr)
+        return self.robust_msg_transmition(message, targetid, objctadd)
+
+    def get_temperature(self, targetid):
+        objctadd = 0x05
+        data_arr = [0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]
+        message = KdeCanAPI.assemble_can_message(targetid, objctadd, data_arr)
+        return self.robust_msg_transmition(message, targetid, objctadd)
+
+    def get_inputthrottle(self, targetid):
+        objctadd = 0x06
+        data_arr = [0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]
+        message = KdeCanAPI.assemble_can_message(targetid, objctadd, data_arr)
+        return self.robust_msg_transmition(message, targetid, objctadd)
+
+    def get_outputthrottle(self, targetid):
+        objctadd = 0x07
+        data_arr = [0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]
+        message = KdeCanAPI.assemble_can_message(targetid, objctadd, data_arr)
+        return self.robust_msg_transmition(message, targetid, objctadd)
+
+    def get_mcuid(self, targetid):
+        objctadd = 0x08
+        data_arr = [0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]
+        message = KdeCanAPI.assemble_can_message(targetid, objctadd, data_arr)
+        return self.robust_msg_transmition(message, targetid, objctadd)
+
+    def get_vcrtw(self, targetid):
+        objctadd = 0x0B     # 0x0B = 11
+        data_arr = [0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]
+        message = KdeCanAPI.assemble_can_message(targetid, objctadd, data_arr)
+        return self.robust_msg_transmition(message, targetid, objctadd)
 
     def set_pwm(self, throttle, targetid):
         objctadd = 0x01
         # data_arr = [0x05, 0xFC, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]
         data_arr = ParseMsg.uint16_to_bytearray(np.uint16(throttle))
-        message = self.get_message(targetid, objctadd, data_arr)
+        message = KdeCanAPI.assemble_can_message(targetid, objctadd, data_arr)
         self.kdecan_bus.send(message, timeout=self.kdecan_send_timeout)
         # msg = self.kdecan_bus.recv(timeout=self.kdecan_recv_timeout)
         # self.check_recv_msg(msg, targetid, objctadd)
         # return ParseMsg.parse_pwm(msg)
 
-    def get_voltage(self, targetid):
-        objctadd = 0x02
-        data_arr = [0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]
-        message = self.get_message(targetid, objctadd, data_arr)
-
-        self.kdecan_bus.send(message, timeout=self.kdecan_send_timeout)
-        msg = self.kdecan_bus.recv(timeout=self.kdecan_recv_timeout)
-        self.check_recv_msg(msg, targetid, objctadd)
-        return ParseMsg.parse_voltage(msg)
-
-    def get_current(self, targetid):
-        objctadd = 0x03
-        data_arr = [0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]
-        message = self.get_message(targetid, objctadd, data_arr)
-
-        self.kdecan_bus.send(message, timeout=self.kdecan_send_timeout)
-        msg = self.kdecan_bus.recv(timeout=self.kdecan_recv_timeout)
-        self.check_recv_msg(msg, targetid, objctadd)
-        return ParseMsg.parse_current(msg)
-
-    @staticmethod
-    def get_currentbias(targetid):
-        if targetid == 11:
-            return 7.66
-        if targetid == 12:
-            return 3.32
-        if targetid == 13:
-            return 1.00
-        if targetid == 14:
-            return 1.65
-        if targetid == 15:
-            return 7.51
-        if targetid == 16:
-            return 4.19
-        if targetid == 17:
-            return 1.00
-        if targetid == 18:
-            return 1.00
-
-    def get_rpm(self, targetid):
-        objctadd = 0x04
-        data_arr = [0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]
-        message = self.get_message(targetid, objctadd, data_arr)
-
-        self.kdecan_bus.send(message, timeout=self.kdecan_send_timeout)
-        msg = self.kdecan_bus.recv(timeout=self.kdecan_recv_timeout)
-        self.check_recv_msg(msg, targetid, objctadd)
-        return ParseMsg.parse_rpm(msg)
-
-    def get_temperature(self, targetid):
-        objctadd = 0x05
-        data_arr = [0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]
-        message = self.get_message(targetid, objctadd, data_arr)
-
-        self.kdecan_bus.send(message, timeout=self.kdecan_send_timeout)
-        msg = self.kdecan_bus.recv(timeout=self.kdecan_recv_timeout)
-        self.check_recv_msg(msg, targetid, objctadd)
-        return ParseMsg.parse_temperature(msg)
-
-    def get_inputthrottle(self, targetid):
-        objctadd = 0x06
-        data_arr = [0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]
-        message = self.get_message(targetid, objctadd, data_arr)
-
-        self.kdecan_bus.send(message, timeout=self.kdecan_send_timeout)
-        msg = self.kdecan_bus.recv(self.kdecan_recv_timeout)
-        self.check_recv_msg(msg, targetid, objctadd)
-        return ParseMsg.parse_inputthrottle(msg)
-
-    def get_outputthrottle(self, targetid):
-        objctadd = 0x07
-        data_arr = [0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]
-        message = self.get_message(targetid, objctadd, data_arr)
-
-        self.kdecan_bus.send(message, timeout=self.kdecan_send_timeout)
-        msg = self.kdecan_bus.recv(timeout=self.kdecan_recv_timeout)
-        self.check_recv_msg(msg, targetid, objctadd)
-        return ParseMsg.parse_outputthrottle(msg)
-
-    def get_mcuid(self, targetid):
-        objctadd = 0x08
-        data_arr = [0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]
-        message = self.get_message(targetid, objctadd, data_arr)
-
-        self.kdecan_bus.send(message, timeout=self.kdecan_send_timeout)
-        msg = self.kdecan_bus.recv(timeout=self.kdecan_recv_timeout)
-        self.check_recv_msg(msg, targetid, objctadd)
-        return ParseMsg.parse_mcuid(msg)
-
-    def get_vcrtw(self, targetid):
-        objctadd = 0x0B     # 0x0B = 11
-        data_arr = [0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]
-        message = self.get_message(targetid, objctadd, data_arr)
-
-        self.kdecan_bus.send(message, timeout=self.kdecan_send_timeout)
-        msg = self.kdecan_bus.recv(timeout=self.kdecan_recv_timeout)
-        self.check_recv_msg(msg, targetid, objctadd)
-        return ParseMsg.parse_vcrtw(msg)
-
     def set_turnoffesc(self, targetid):
         objctadd = 0x20
         data_arr = [0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]
-        message = self.get_message(targetid, objctadd, data_arr)
-
+        message = KdeCanAPI.assemble_can_message(targetid, objctadd, data_arr)
         self.kdecan_bus.send(message, timeout=self.kdecan_send_timeout)
-        msg = self.kdecan_bus.recv(timeout=self.kdecan_recv_timeout)
-        self.check_recv_msg(msg, targetid, objctadd)
-        return ParseMsg.parse_turnoffesc(msg)
+        # msg = self.kdecan_bus.recv(timeout=self.kdecan_recv_timeout)
+        # self.check_recv_msg(msg, targetid, objctadd)
+        # return ParseMsg.parse_pwm(msg)
 
     def set_restartesc(self, targetid):
         objctadd = 0x21
         data_arr = [0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]
-        message = self.get_message(targetid, objctadd, data_arr)
-
+        message = KdeCanAPI.assemble_can_message(targetid, objctadd, data_arr)
         self.kdecan_bus.send(message, timeout=self.kdecan_send_timeout)
-        msg = self.kdecan_bus.recv(timeout=self.kdecan_recv_timeout)
-        self.check_recv_msg(msg, targetid, objctadd)
-        return ParseMsg.parse_restartesc(msg)
+        # msg = self.kdecan_bus.recv(timeout=self.kdecan_recv_timeout)
+        # self.check_recv_msg(msg, targetid, objctadd)
+        # return ParseMsg.parse_pwm(msg)

@@ -5,52 +5,68 @@ import numpy as np
 
 
 class ParseMsg:
-
     @staticmethod
     def uint16_to_bytearray(uint16):
         isinstance(uint16, np.uint16)
-
         b1mask = int("FF00", 16)
         b1 = (uint16 & b1mask) >> (1 * 8)
         b2mask = int("00FF", 16)
         b2 = (uint16 & b2mask) >> (0 * 8)
         data_arr = bytearray([b1, b2, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00])
-
         # val = int("%02X%02X" % (b1, b2), 16)    # should be equal to uint16
         # print("[uint16_to_bytearray] b1 = %mysched" % b1)
         # print("[uint16_to_bytearray] b2 = %mysched" % b2)
         # print("[uint16_to_bytearray] b1b2 = %d" % val)
-
         return data_arr
 
     @staticmethod
     def hexstr_to_uint16(hexstr):
-
         uint16 = int(hexstr, 16)
         uint16 = np.uint16(uint16)
-
         # print("[hexstr_to_uint16] hexstr = %mysched" % hexstr)
         # print("[hexstr_to_uint16] uint16 = %mysched" % uint16)
-
         return uint16
 
     @staticmethod
     def bytearray_to_hexstr(data_arr):
         isinstance(data_arr, bytearray)
-
         # cnt = 0
         hexstr = ""
         # for byte in msg.data:
         for byte in data_arr:
             # cnt = cnt + 1
             # print("byte %d = %mysched = %d = %02X" % (cnt, byte, byte, byte))
-
             hexstr_i = "%02X" % byte
             hexstr = hexstr + hexstr_i
-
         # print("[bytearray_to_hexstr] hexstr = %mysched" % hexstr)
-
         return hexstr
+
+    @staticmethod
+    def parse_recv_msg(msg, objctadd):
+        if objctadd == 0x00:
+            return ParseMsg.parse_esc_info(msg)
+        if objctadd == 0x02:
+            return ParseMsg.parse_voltage(msg)
+        if objctadd == 0x03:
+            return ParseMsg.parse_current(msg)
+        if objctadd == 0x04:
+            return ParseMsg.parse_rpm(msg)
+        if objctadd == 0x05:
+            return ParseMsg.parse_temperature(msg)
+        if objctadd == 0x06:
+            return ParseMsg.parse_inputthrottle(msg)
+        if objctadd == 0x07:
+            return ParseMsg.parse_outputthrottle(msg)
+        if objctadd == 0x08:
+            return ParseMsg.parse_mcuid(msg)
+        if objctadd == 0x0B:
+            return ParseMsg.parse_vcrtw(msg)
+        if objctadd == 0x20:
+            return ParseMsg.parse_turnoffesc(msg)
+        if objctadd == 0x21:
+            return ParseMsg.parse_restartesc(msg)
+        if objctadd == 0x22:
+            return ParseMsg.parse_warning(msg)
 
     @staticmethod
     def parse_arbitrid(arbitrid):
@@ -75,11 +91,7 @@ class ParseMsg:
     def parse_esc_info(msg):
         if msg is None:
             return None
-        hexstr = ParseMsg.bytearray_to_hexstr(msg.data)
-        escinfo = hexstr
-        # escinfo = [int(x) for x in msg.data]
-
-        return escinfo
+        return ParseMsg.bytearray_to_hexstr(msg.data)
 
     @staticmethod
     def parse_voltage(msg):
@@ -87,7 +99,6 @@ class ParseMsg:
             return None
         hexstr = ParseMsg.bytearray_to_hexstr(msg.data)
         uint16 = ParseMsg.hexstr_to_uint16(hexstr)
-
         voltage = uint16 / 100
         return voltage
 
@@ -97,9 +108,27 @@ class ParseMsg:
             return None
         hexstr = ParseMsg.bytearray_to_hexstr(msg.data)
         uint16 = ParseMsg.hexstr_to_uint16(hexstr)
-
         current = uint16 / 100
         return current
+
+    @staticmethod
+    def get_currentbias(targetid):
+        if targetid == 11:
+            return 7.66
+        if targetid == 12:
+            return 3.32
+        if targetid == 13:
+            return 1.00
+        if targetid == 14:
+            return 1.65
+        if targetid == 15:
+            return 7.51
+        if targetid == 16:
+            return 4.19
+        if targetid == 17:
+            return 1.00
+        if targetid == 18:
+            return 1.00
 
     @staticmethod
     def parse_rpm(msg):
@@ -107,7 +136,6 @@ class ParseMsg:
             return None
         hexstr = ParseMsg.bytearray_to_hexstr(msg.data)
         uint16 = ParseMsg.hexstr_to_uint16(hexstr)
-
         elec_rpm = float(uint16)
         num_mag_poles = 28    # KDE6213XF
         mech_rpm = elec_rpm * 60 * 2 / num_mag_poles
@@ -119,7 +147,6 @@ class ParseMsg:
             return None
         hexstr = ParseMsg.bytearray_to_hexstr(msg.data)
         uint16 = ParseMsg.hexstr_to_uint16(hexstr)
-
         temp = float(uint16)    # / 100
         return temp
 
@@ -129,7 +156,6 @@ class ParseMsg:
             return None
         hexstr = ParseMsg.bytearray_to_hexstr(msg.data)
         uint16 = ParseMsg.hexstr_to_uint16(hexstr)
-
         throttle = float(uint16)
         return throttle
 
@@ -139,7 +165,6 @@ class ParseMsg:
             return None
         hexstr = ParseMsg.bytearray_to_hexstr(msg.data)
         uint16 = ParseMsg.hexstr_to_uint16(hexstr)
-
         throttle = float(uint16)    # / 100
         return throttle
 
@@ -147,10 +172,7 @@ class ParseMsg:
     def parse_mcuid(msg):
         if msg is None:
             return None
-        hexstr = ParseMsg.bytearray_to_hexstr(msg.data)
-
-        mcuid = hexstr
-        return mcuid
+        return ParseMsg.bytearray_to_hexstr(msg.data)
 
     @staticmethod
     def parse_warning(uint16):
@@ -193,16 +215,10 @@ class ParseMsg:
     def parse_turnoffesc(msg):
         if msg is None:
             return None
-        hexstr = ParseMsg.bytearray_to_hexstr(msg.data)
-
-        resp = hexstr
-        return resp
+        return ParseMsg.bytearray_to_hexstr(msg.data)
 
     @staticmethod
     def parse_restartesc(msg):
         if msg is None:
             return None
-        hexstr = ParseMsg.bytearray_to_hexstr(msg.data)
-
-        resp = hexstr
-        return resp
+        return ParseMsg.bytearray_to_hexstr(msg.data)
