@@ -80,10 +80,14 @@ class KdeCanLive:
 
     def new_log_filename(self):
         self.logs_in_folder = self.find_logs_in_folder()
+        if len(self.logs_in_folder['lognum']) > 0:
+            prev_lognum = np.max(self.logs_in_folder['lognum'])
+        else:
+            prev_lognum = 0
 
         dtnow = datetime.datetime.now()
         logstr = self.log_filename_logstr
-        lognum = str(np.max(self.logs_in_folder['lognum']) + 1)
+        lognum = str(prev_lognum + 1)
         logdate = dtnow.strftime("%Y-%m-%d-%H-%M-%S")
 
         separator = self.log_filename_separator
@@ -322,7 +326,7 @@ class KdeCanAPI:
          inthrottle, outthrottle] = resp
 
         #   arg = "%s, %s, %04.2f, %s, %07.2f, %s, %s, %s, %s " % \
-        arg = "%s s, %s escid, " \
+        arg = "%s time, %s escid, " \
               "%04.2f V, %s A, %07.2f rpm, %s degC, %s, " \
               "%s us, %s perc " % \
               (telap, targetid,
