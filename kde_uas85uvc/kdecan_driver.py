@@ -48,8 +48,8 @@ class KdeCanLive:
                 [logstr, lognum, logdate] = res
                 _ = logstr
                 file_lognum_arr.append(lognum)
-                print('Detected log {} captured on {}, filename {}'.format(
-                    lognum, logdate, logname))
+                print('[find_logs_in_folder] lognum {}, logdate  {}, logname {}'
+                      .format(lognum, logdate, logname))
                 lognum_arr.append(lognum)
                 logdate_arr.append(logdate)
                 logname_arr.append(logname)
@@ -64,10 +64,13 @@ class KdeCanLive:
             tail = '.{}'.format(self.log_filename_extension)
             filename = filename.replace(tail, '')
             farr = filename.split(self.log_filename_separator)
-            print(farr)
+            
+            print('[parse_log_filename] filename{}'.format(filename))
+            print('[parse_log_filename] farr {}'.format(farr))
             logstr = farr[0] == self.log_filename_logstr
             lognum = int(farr[1])
             logdate = datetime.datetime.strptime(farr[2], '%Y-%m-%d-%H-%M-%S')
+
             if len(farr) != 3:
                 return None
             else:
@@ -258,14 +261,14 @@ class KdeCanAPI:
         can0_pattern2 = 'flags=128<NOARP>'
         can0_pattern3 = 'flags=193<UP,RUNNING,NOARP>'
 
-        can0_up_running_noarpm = False
+        can0_up_running_noarp = False
         for line in results:
             if can0_pattern1 in line:
-                print(line)
+                print("[check_can0_status] ".format(line))
                 if can0_pattern2 in line:
-                    can0_up_running_noarpm = False
+                    can0_up_running_noarp = False
                 if can0_pattern3 in line:
-                    can0_up_running_noarpm = True
+                    can0_up_running_noarp = True
 
         # can0: flags=128<NOARP>  mtu 16
         #         unspec 00-00-00-00-00-00-00-00-00-00-00-00-00-00-00-00  txqueuelen 10  (UNSPEC)
@@ -285,7 +288,7 @@ class KdeCanAPI:
         #         TX packets 0  bytes 0 (0.0 B)
         #         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
 
-        return can0_up_running_noarpm
+        return can0_up_running_noarp
 
     def set_pwm_esc_arr(self, esc_arr, throttle_arr):
         for i in range(0, len(esc_arr)):
