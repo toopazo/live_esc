@@ -17,16 +17,16 @@ class KdeCanLive:
         # assert isinstance(kdecanapi, KdeCanAPI)
         self.kdecanapi = KdeCanAPI()
 
-        # folder for logs
-        self.folder = folder
-        self.logs_in_folder = self.find_logs_in_folder()
-
         self.log_filename = None
         self.log_fd = None
         # log_141_2020-12-22-13-41-26.ulg
         self.log_filename_separator = '_'
         self.log_filename_logstr = 'log'
         self.log_filename_extension = 'kdecan'
+
+        # folder for logs
+        self.log_folder = folder
+        self.logs_in_folder = self.find_logs_in_folder()
 
         self.time0 = time.time()
         signal.signal(signal.SIGINT, self.signal_handler)
@@ -38,7 +38,7 @@ class KdeCanLive:
         logname_arr = []
 
         farr = FFTools.get_file_arr(
-            self.folder, extension=self.log_filename_extension)
+            self.log_folder, extension=self.log_filename_extension)
         for file in farr:
             [head, tail] = FFTools.get_file_split(file)
             _ = head
@@ -54,7 +54,7 @@ class KdeCanLive:
                 logdate_arr.append(logdate)
                 logname_arr.append(logname)
 
-        logs_in_folder = {'folder': self.folder, 'lognum': lognum_arr,
+        logs_in_folder = {'folder': self.log_folder, 'lognum': lognum_arr,
                           'logdate': logdate_arr, 'logname': logname_arr}
         return logs_in_folder
 
