@@ -106,8 +106,8 @@ class KdeCanLive:
 
     def signal_handler(self, _signal, _frame):
         print('[signal_handler] calling self.kdecan_bus.shutdown() ..')
-        print(_signal)
-        print(_frame)
+        print('[signal_handler] signal {}'.format(_signal))
+        print('[signal_handler] frame  {}'.format(_frame))
         self.close_it_all()
         sys.exit(0)
 
@@ -186,11 +186,11 @@ class KdeCanLive:
         self.log_fd = open(self.log_filename, "w")
 
         # Write first line of csv file
-        arg = "time s, escid, " \
-              "voltage V, current A, angVel rpm, temp degC, warning, " \
-              "inthtl us, outthtl perc"
-        print(arg)
-        self.log_fd.write(arg + "\r\n")
+        log_header = "time s, escid, " \
+                     "voltage V, current A, angVel rpm, temp degC, warning, " \
+                     "inthtl us, outthtl perc"
+        print(log_header)
+        self.log_fd.write(log_header + "\r\n")
 
         # Perform test
         # niter = 0
@@ -206,15 +206,18 @@ class KdeCanLive:
                  voltage, current, rpm, temp, warning,
                  inthrottle, outthrottle] = resp
 
-                #   arg = "%s, %s, %04.2f, %s, %07.2f, %s, %s, %s, %s " % \
-                arg = "%s s, %s escid, " \
-                      "%04.2f V, %s A, %07.2f rpm, %s degC, %s, " \
-                      "%s us, %s perc " % \
-                      (telap, targetid,
-                       voltage, current, rpm, temp, warning,
-                       inthrottle, outthrottle)
-                print(arg)
-                self.log_fd.write(arg + "\r\n")
+                log_data = "%s, %s, %04.2f, %s, %07.2f, %s, %s, %s, %s " % \
+                           (telap, targetid,
+                            voltage, current, rpm, temp, warning,
+                            inthrottle, outthrottle)
+                # log_data = "%s s, %s escid, " \
+                #       "%04.2f V, %s A, %07.2f rpm, %s degC, %s, " \
+                #       "%s us, %s perc " % \
+                #       (telap, targetid,
+                #        voltage, current, rpm, temp, warning,
+                #        inthrottle, outthrottle)
+                print(log_data)
+                self.log_fd.write(log_data + "\r\n")
 
             # busy wait for next loop
             self.busy_waiting(self.time0, sampling_period, sampling_period / 8)
@@ -312,11 +315,6 @@ class KdeCanAPI:
                 voltage, current, rpm, temp, warning,
                 inthrottle, outthrottle]
         return resp
-
-    def get_data_esc_header(self):
-        arg = "time, escid, voltage, current, rpm, temp, warn, thtl_in, thtl_out"
-        units = "s, escid, V, A, rpm, degC, str, us, %s perc "
-        return arg
 
     def data_esc_to_str(self, resp):
         [telap, targetid,

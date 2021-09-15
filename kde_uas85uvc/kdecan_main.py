@@ -34,7 +34,7 @@ if __name__ == '__main__':
         umsg = kdecanlive.kdecanapi.data_esc_to_str(umsg)
         print(umsg)
 
-    # uesc_arr = list(range(11, 19))
-    # uperiod = 0.1
-    # kdecanlive.live_data(uesc_arr, uperiod)
+    uesc_arr = list(range(11, 19))
+    uperiod = 0.1
+    kdecanlive.live_data(uesc_arr, uperiod)
 
