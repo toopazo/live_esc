@@ -288,7 +288,7 @@ if __name__ == '__main__':
 
     ufolder = ufolder
     utelemetry_iface = KdeCanIfaceWrapper()
-    utelemetry_ext = ".kdecam"
+    utelemetry_ext = ".kdecan"
     telem_logger = TelemetryLogger(ufolder, utelemetry_iface, utelemetry_ext)
 
     usampling_period = 0.1
