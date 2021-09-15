@@ -224,18 +224,14 @@ class KdeCanLive:
 class KdeCanAPI:
 
     def __init__(self):
-        # sudo /sbin/ip link set can0 down
-        # sudo /sbin/ip link set can0 up type can bitrate 500000
-        # This last line was added to "/etc/rc.local" file
-
-        # os.system('sudo ip link set can0 down')
-        # os.system('sudo ip link set can0 type can bitrate 500000')
-        # os.system('sudo ip link set can0 up')
-
-        # self.check_can0_status()
+        if self.check_can0_status():
+            pass
+        else:
+            os.system('sudo ip link set can0 down')
+            os.system('sudo ip link set can0 type can bitrate 500000')
+            os.system('sudo ip link set can0 up')
 
         # create a kdecan_bus instance
-        # many other interfaces are supported as well (see below)
         self.kdecan_bus = can.Bus(
             interface='socketcan', channel='can0', receive_own_messages=False,
             is_extended_id=True)
