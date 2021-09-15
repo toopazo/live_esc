@@ -249,13 +249,10 @@ class KdeCanIfaceWrapper:
                        (telap, targetid,
                         voltage, current, rpm, temp, warning,
                         inthrottle, outthrottle)
-            # log_data = "%s s, %s escid, " \
-            #       "%04.2f V, %s A, %07.2f rpm, %s degC, %s, " \
-            #       "%s us, %s perc " % \
-            #       (telap, targetid,
-            #        voltage, current, rpm, temp, warning,
-            #        inthrottle, outthrottle)
-            log_data_final = log_data_final + "\r\n" + log_data
+            if len(log_data_final) == 0:
+                log_data_final = log_data
+            else:
+                log_data_final = log_data_final + "\r\n" + log_data
             # self.log_fd.write(log_data + "\r\n")
         return log_data_final
 
