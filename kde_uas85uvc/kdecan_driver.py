@@ -22,7 +22,7 @@ class KdeCanLive:
         # log_141_2020-12-22-13-41-26.ulg
         self.log_filename_separator = '_'
         self.log_filename_logstr = 'log'
-        self.log_filename_extension = 'kdecan'
+        self.log_filename_extension = '.kdecan'
 
         # folder for logs
         self.log_folder = folder
@@ -61,11 +61,10 @@ class KdeCanLive:
     def parse_log_filename(self, filename):
         if self.log_filename_extension in filename:
             # log_141_2020-12-22-13-41-26.ulg
-            tail = '.{}'.format(self.log_filename_extension)
-            filename = filename.replace(tail, '')
+            filename = filename.replace(self.log_filename_extension, '')
             farr = filename.split(self.log_filename_separator)
-            
-            print('[parse_log_filename] filename{}'.format(filename))
+
+            print('[parse_log_filename] filename {}'.format(filename))
             print('[parse_log_filename] farr {}'.format(farr))
             logstr = farr[0] == self.log_filename_logstr
             lognum = int(farr[1])
@@ -90,7 +89,7 @@ class KdeCanLive:
         separator = self.log_filename_separator
         extension = self.log_filename_extension
         fnarr = [
-            logstr, separator, lognum, separator, logdate, '.', extension
+            logstr, separator, lognum, separator, logdate, extension
         ]
         log_filename = ''.join(fnarr)
         return log_filename
