@@ -1,5 +1,5 @@
 # live_esc
-Protocols for reading live telemetry from Electronic Speed Controllers (ESC). This is important in the context of UAV and Drone technology.
+Protocols for reading live telemetry from commercial Electronic Speed Controllers (ESC). This is important in the context of UAV and Drone technology.
 
 |Más información en https://toopazo.github.io/postscyt/Programar-ESC/|
 |---|
