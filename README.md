@@ -4,6 +4,23 @@ Protocols for reading live telemetry from commercial Electronic Speed Controller
 |Más información en https://toopazo.github.io/postscyt/Programar-ESC/|
 |---|
 
+## Install
+```shell
+git clone https://github.com/toopazo/live_esc.git
+cd live_esc/
+. ./create_venv.sh
+```
+
+Make sure you end up with the environment activated indicated by ```(venv) user@host:```
+If not, run
+```shell
+source venv/bin/activate
+```
+To deactivate it just type
+```shell
+deactivate
+```
+
 ## Phoenix Edge HV series
 ![](phoenix_edge_hv_80/phoenix_edge_hv_80.jpg)
 
@@ -22,6 +39,11 @@ For this type of ESC I made use of the existing repo https://github.com/math2pet
 The code from ```math2peters``` works well, but I have not being able to get the ```TTL Serial (with PPM Input)``` mode to work.
 Connecting the Pixhawk's port```IO PWM out``` for motor 1 (it could have been any) into pin ```D``` of the Serial Link produces no response from the ESC. There seems to be a problem -on the Castle Creation side- intepreting the throttle signal.       
 
+To run the code type (assuming you already installed the necessary environment)
+```shell
+python phoenix_edge_hv_80/serial_link_main.py phoenix_edge_hv_80/
+```
+
 ## KDE UAS series
 ![](kde_uas85uvc/kde_uas85uvc.jpg)
 
@@ -38,3 +60,7 @@ The setup for this ESC was
 The Inno-Maker board was a very convenient way to communicate with ESC from a laptop without having to spend too much work on getting the CAN bus to work.
 I implemented the KDECAN protocol as a python class. Tests were successful at retrieving live data.
 
+To run the code type (assuming you already installed the necessary environment)
+```shell
+python kde_uas85uvc/kdecan_main.py kde_uas85uvc/
+```
