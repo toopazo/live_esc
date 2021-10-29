@@ -22,7 +22,8 @@ class PlotTelemetryLog:
         self.file_extension = ext
 
         self.dataframe = pandas.read_csv(
-            self.file_path, index_col=index_col, parse_dates=True)
+            self.file_path, index_col=index_col,
+            parse_dates=True, skipinitialspace=True)
         # self.dataframe.set_index(
         #     index_col, inplace=True, verify_integrity=True)
         # print(self.dataframe)
