@@ -15,6 +15,26 @@ class PlotTelemetryLog:
     Class to plot data from log
     """
 
+<<<<<<< HEAD
+    def __init__(self, filepath, index_col):
+        self.file_path = filepath
+        [head, tail] = FFTools.get_file_split(filepath)
+        self.file_folder = head
+        self.file_name = tail
+        [root, ext] = FFTools.get_file_splitext(filepath)
+        _ = root
+        self.file_extension = ext
+
+        self.dataframe = pandas.read_csv(
+            self.file_path, index_col=index_col,
+            parse_dates=True, skipinitialspace=True)
+        # self.dataframe.set_index(
+        #     index_col, inplace=True, verify_integrity=True)
+        # print(self.dataframe)
+        # print(self.dataframe.shape)
+        # print(self.dataframe.columns)
+        # print(self.dataframe.iterrows())
+=======
     def __init__(self, bdir, log_num, time_win):
         # bdir = FFTools.full_path(args.bdir)
         # bdir = os.path.abspath(args.bdir)
@@ -52,6 +72,7 @@ class PlotTelemetryLog:
 
         self.log_num = log_num
         self.time_win = time_win
+>>>>>>> abf928c0f9130fb9cd7fe4c5a108c882df11b6c2
 
         matplotlib.use('Qt5Agg')
 

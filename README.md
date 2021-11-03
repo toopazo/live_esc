@@ -64,3 +64,11 @@ To run the code type (assuming you already installed the necessary environment)
 ```shell
 python kde_uas85uvc/kdecan_main.py kde_uas85uvc/
 ```
+
+To plot data this repo makes us of 
+[pandas](https://pandas.pydata.org/docs/index.html). 
+Therefore, we need to indicate a filename to parse but also
+an index for our dataframe.
+```buildoutcfg
+python kdecan_plot_log.py logs/log_3_2021-10-14-19-23-28.kdecan "time s"
+```
