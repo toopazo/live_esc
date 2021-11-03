@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="eb1e1379-4a43-4e06-8660-bc0ad1303794" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/create_venv.sh" beforeDir="false" afterPath="$PROJECT_DIR$/create_venv.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/kde_uas85uvc/kdecan_plot_log.py" beforeDir="false" afterPath="$PROJECT_DIR$/kde_uas85uvc/kdecan_plot_log.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -27,6 +29,11 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/create_venv.sh" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/kde_uas85uvc/kdecan_plot_log.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/kde_uas85uvc/kdecan_logger.py" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="1vGZhK6iw1y568qg1xt4l2IwlON" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
