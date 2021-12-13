@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 from toopazo_tools.file_folder import FileFolderTools as FFTools
 
 
-class PlotTelemetryLog:
+class PlotKdecanLog:
     """
     Class to plot data from log
     """
@@ -70,7 +70,8 @@ class PlotTelemetryLog:
 
     def process_file(self, kdecanfile):
         if self.log_num is not None:
-            if self.log_num not in kdecanfile:
+            pattern = f'_{self.log_num}_'
+            if pattern not in kdecanfile:
                 return
 
         print('[process_file] Working on file %s' % kdecanfile)
@@ -133,11 +134,8 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    kdecan_data = PlotTelemetryLog(
-        os.path.abspath(args.bdir), args.log_num, args.time_win
-    )
+    kdecan_data = PlotKdecanLog(os.path.abspath(args.bdir), args.log_num, args.time_win)
     kdecan_data.process_logdir()
-
 
     # ufilename = sys.argv[1]
     # ufilename = parse_user_arg(ufilename)
@@ -148,7 +146,7 @@ if __name__ == '__main__':
     #     warning, inthtl us, outthtl perc
 
     #
-    # plotlog = PlotTelemetryLog(ufilename, uindexcol)
+    # plotlog = PlotKdecanLog(ufilename, uindexcol)
     # udataframe = plotlog.dataframe
     # print(udataframe)
     # for escid in range(11, 19):
