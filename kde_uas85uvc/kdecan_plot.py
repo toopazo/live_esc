@@ -70,7 +70,7 @@ class KdecanPlot:
         print(kdecan_df)
 
         for escid in range(11, 19):
-            df_tmp = kdecan_df[kdecan_df[kdecan_df.col_escid] == escid]
+            df_tmp = kdecan_df[kdecan_df[KdecanParser.col_escid] == escid]
             col_arr = [KdecanParser.col_voltage, KdecanParser.col_current, KdecanParser.col_rpm,
                        KdecanParser.col_inthtl, KdecanParser.col_outthtl]
             df_tmp = df_tmp[col_arr]
