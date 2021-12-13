@@ -3,11 +3,12 @@
 import os
 import pandas
 import datetime
+from toopazo_tools.pandas import PandasTools
 
 
 class KdecanParser:
     """
-    Class to plot data from log
+    Class to get data from log
     """
 
     file_extension = 'kdecan'
@@ -55,18 +56,10 @@ class KdecanParser:
         dataframe = pandas.read_csv(
             kdecan_file, index_col=KdecanParser.col_time,
             parse_dates=True, skipinitialspace=True)
-        dataframe = KdecanParser.apply_time_win(dataframe, time_win)
+        dataframe = PandasTools.apply_time_win_strptime(dataframe, time_win)
         # if verbose:
         #     print(dataframe)
         return dataframe
 
-    @staticmethod
-    def apply_time_win(dataframe, time_win):
-        if (time_win is not None) and (len(time_win) == 2):
-            time_win_0 = datetime.datetime.strptime(time_win[0])
-            time_win_1 = datetime.datetime.strptime(time_win[0])
-            # df = df.loc[time_win[0] < df.index < time_win[1]]
-            dataframe = dataframe.loc[time_win_0 < dataframe.index]
-            dataframe = dataframe.loc[dataframe.index < time_win_1]
-        return dataframe
+
 
