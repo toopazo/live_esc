@@ -8,9 +8,10 @@ import argparse
 import datetime
 import matplotlib.pyplot as plt
 from toopazo_tools.file_folder import FileFolderTools as FFTools
+from kdecan_parse import KdecanParser
 
 
-class PlotKdecanLog:
+class KdecanPlot:
     """
     Class to plot data from log
     """
@@ -40,26 +41,16 @@ class PlotKdecanLog:
         self.file_extension = 'kdecan'
         self.figsize = (12, 6)
 
-        self.col_time = 'time s'
-        self.col_escid = 'escid'
-        self.col_voltage = 'voltage V'
-        self.col_current = 'current A'
-        self.col_rpm = 'angVel rpm'
-        self.col_temp = 'temp degC'
-        self.col_warn = 'warning'
-        self.col_inthtl = 'inthtl us'
-        self.col_outthtl = 'outthtl perc'
-
         self.log_num = log_num
         self.time_win = time_win
 
         matplotlib.use('Qt5Agg')
 
-    def save_current_plot(self, kdecanfile, tag_arr, sep, ext):
-        assert isinstance(kdecanfile, str)
-        (head, tail) = os.path.split(kdecanfile)
-        kdecanfile = tail
-        name = kdecanfile.replace(self.file_extension, "")
+    def save_current_plot(self, kdecan_file, tag_arr, sep, ext):
+        assert isinstance(kdecan_file, str)
+        (head, tail) = os.path.split(kdecan_file)
+        kdecan_file = tail
+        name = kdecan_file.replace(self.file_extension, "")
         for tag in tag_arr:
             name = name + sep + str(tag)
         file_path = self.plotdir + '/' + name + ext
@@ -68,40 +59,29 @@ class PlotKdecanLog:
         plt.savefig(file_path)
         # return file_path
 
-    def process_file(self, kdecanfile):
+    def process_file(self, kdecan_file):
         if self.log_num is not None:
             pattern = f'_{self.log_num}_'
-            if pattern not in kdecanfile:
+            if pattern not in kdecan_file:
                 return
 
-        print('[process_file] Working on file %s' % kdecanfile)
+        print('[process_file] Working on file %s' % kdecan_file)
+        kdecan_df = KdecanParser.get_pandas_dataframe(kdecan_file, self.time_win)
+        print(kdecan_df)
 
-        dataframe = pandas.read_csv(
-            kdecanfile, index_col=self.col_time,
-            parse_dates=True, skipinitialspace=True)
-        dataframe = self.apply_time_win(dataframe)
-
-        print(dataframe)
         for escid in range(11, 19):
-            df_tmp = dataframe[dataframe[self.col_escid] == escid]
-            col_arr = [self.col_voltage, self.col_current, self.col_rpm, self.col_inthtl, self.col_outthtl]
+            df_tmp = kdecan_df[kdecan_df[kdecan_df.col_escid] == escid]
+            col_arr = [KdecanParser.col_voltage, KdecanParser.col_current, KdecanParser.col_rpm,
+                       KdecanParser.col_inthtl, KdecanParser.col_outthtl]
             df_tmp = df_tmp[col_arr]
+            # df_tmp['power'] = df_tmp[self.col_voltage] * df_tmp[self.col_current]
             df_tmp.plot(figsize=self.figsize, subplots=True)
-            self.save_current_plot(kdecanfile, tag_arr=["escid{}".format(escid)], sep="_", ext='.png')
+            self.save_current_plot(kdecan_file, tag_arr=["escid{}".format(escid)], sep="_", ext='.png')
 
-    def process_logdir(self):
-        print('[process_logdir] processing %s' % self.logdir)
+    def process_folder(self):
+        print('[process_folder] processing %s' % self.logdir)
         # foldername, extension, method
         FFTools.run_method_on_folder(self.logdir, self.file_extension, self.process_file)
-
-    def apply_time_win(self, dataframe):
-        if (self.time_win is not None) and (len(self.time_win) == 2):
-            time_win_0 = datetime.datetime.strptime(self.time_win[0])
-            time_win_1 = datetime.datetime.strptime(self.time_win[0])
-            # df = df.loc[time_win[0] < df.index < time_win[1]]
-            dataframe = dataframe.loc[time_win_0 < dataframe.index]
-            dataframe = dataframe.loc[dataframe.index < time_win_1]
-        return dataframe
 
 # def parse_user_arg(filename):
 #     filename = FFTools.full_path(filename)
@@ -134,8 +114,8 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    kdecan_data = PlotKdecanLog(os.path.abspath(args.bdir), args.log_num, args.time_win)
-    kdecan_data.process_logdir()
+    kdecan_data = KdecanPlot(os.path.abspath(args.bdir), args.log_num, args.time_win)
+    kdecan_data.process_folder()
 
     # ufilename = sys.argv[1]
     # ufilename = parse_user_arg(ufilename)
@@ -146,7 +126,7 @@ if __name__ == '__main__':
     #     warning, inthtl us, outthtl perc
 
     #
-    # plotlog = PlotKdecanLog(ufilename, uindexcol)
+    # plotlog = KdecanPlot(ufilename, uindexcol)
     # udataframe = plotlog.dataframe
     # print(udataframe)
     # for escid in range(11, 19):

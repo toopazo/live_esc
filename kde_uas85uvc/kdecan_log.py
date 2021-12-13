@@ -10,7 +10,7 @@ from toopazo_tools.telemetry import TelemetryLogger
 from kdecan_interface import KdeCanIface
 
 
-class KdeCanIfaceWrapper:
+class KdecanIfaceWrapper:
     def __init__(self):
         self.kdecan = KdeCanIface()
         self.esc_arr = list(range(11, 19))
@@ -65,7 +65,7 @@ if __name__ == '__main__':
         print(umsg)
 
     ufolder = ufolder
-    utelemetry_iface = KdeCanIfaceWrapper()
+    utelemetry_iface = KdecanIfaceWrapper()
     utelemetry_ext = ".kdecan"
     telem_logger = TelemetryLogger(ufolder, utelemetry_iface, utelemetry_ext)
 
