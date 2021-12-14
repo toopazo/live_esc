@@ -22,7 +22,7 @@ deactivate
 ```
 
 ## Phoenix Edge HV series
-![](phoenix_edge_hv_80/phoenix_edge_hv_80.jpg)
+![](phoenix_edge_hv_80_docs/phoenix_edge_hv_80.jpg)
 
 The setup for this ESC was
 - [Castle Creation: Phoenix Edge HV 80](https://www.castlecreations.com/en/phoenix-edge-hv/phoenix-edge-hv80-esc-010-0105-00)
@@ -41,11 +41,11 @@ Connecting the Pixhawk's port```IO PWM out``` for motor 1 (it could have been an
 
 To run the code type (assuming you already installed the necessary environment)
 ```shell
-python phoenix_edge_hv_80/serial_link_main.py phoenix_edge_hv_80/
+python phoenix_edge_hv_80_docs/serial_link_main.py phoenix_edge_hv_80_docs/
 ```
 
 ## KDE UAS series
-![](kde_uas85uvc/kde_uas85uvc.jpg)
+![](live_esc/kde_uas85uvc/kde_uas85uvc.jpg)
 
 The setup for this ESC was
 - [KDE Direct: KDE-UAS85UVC](https://www.kdedirect.com/collections/uas-multi-rotor-electronics/products/kde-uas85uvc)

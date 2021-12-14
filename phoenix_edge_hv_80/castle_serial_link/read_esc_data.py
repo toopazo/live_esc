@@ -3,7 +3,7 @@ import serial
 from datetime import datetime
 import pytz
 import pickle
-from  CastleSerialLinkControl import SerialLink, SerialLinkI2C
+from  castle_serial_link_control import SerialLink, SerialLinkI2C
 
 
 class EscSerialLink(SerialLink):
