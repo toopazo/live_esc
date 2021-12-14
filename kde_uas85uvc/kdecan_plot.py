@@ -16,7 +16,7 @@ class KdecanPlot:
     Class to plot data from log
     """
 
-    def __init__(self, bdir, log_num, time_win):
+    def __init__(self, bdir, time_win):
         # bdir = FFTools.full_path(args.bdir)
         # bdir = os.path.abspath(args.bdir)
         self.logdir = bdir + '/logs'
@@ -41,7 +41,6 @@ class KdecanPlot:
         self.file_extension = 'kdecan'
         self.figsize = (12, 6)
 
-        self.log_num = log_num
         self.time_win = time_win
 
         matplotlib.use('Qt5Agg')
@@ -59,43 +58,39 @@ class KdecanPlot:
         plt.savefig(file_path)
         # return file_path
 
-    def plot_kdecan_dataframe(self, kdecan_df, escid):
-        df_tmp = kdecan_df[kdecan_df[KdecanParser.col_escid] == escid]
-        col_arr = [KdecanParser.col_voltage, KdecanParser.col_current, KdecanParser.col_rpm,
-                   KdecanParser.col_inthtl, KdecanParser.col_outthtl]
-        df_tmp = df_tmp[col_arr]
-        # df_tmp['power'] = df_tmp[self.col_voltage] * df_tmp[self.col_current]
-        df_tmp.plot(figsize=self.figsize, subplots=True)
-
     def process_file(self, kdecan_file):
-        if self.log_num is not None:
-            pattern = f'_{self.log_num}_'
-            if pattern not in kdecan_file:
-                return
-
         print('[process_file] Working on file %s' % kdecan_file)
         kdecan_df = KdecanParser.get_pandas_dataframe(kdecan_file, self.time_win)
         print(kdecan_df)
 
         for escid in range(11, 19):
-            self.plot_kdecan_dataframe(kdecan_df, escid)
+            df_tmp = kdecan_df[kdecan_df[KdecanParser.col_escid] == escid]
+            col_arr = [KdecanParser.col_voltage, KdecanParser.col_current, KdecanParser.col_rpm,
+                       KdecanParser.col_inthtl, KdecanParser.col_outthtl]
+            df_tmp = df_tmp[col_arr]
+            # df_tmp['power'] = df_tmp[self.col_voltage] * df_tmp[self.col_current]
+            df_tmp.plot(figsize=self.figsize, subplots=True)
             self.save_current_plot(kdecan_file, tag_arr=["escid{}".format(escid)], sep="_", ext='.png')
 
     def process_folder(self):
-        print('[process_folder] processing %s' % self.logdir)
+        print('[process_folder] Working on folder %s' % self.logdir)
         # foldername, extension, method
         FFTools.run_method_on_folder(self.logdir, self.file_extension, self.process_file)
 
-# def parse_user_arg(filename):
-#     filename = FFTools.full_path(filename)
-#     print('target file {}'.format(filename))
-#     if FFTools.is_file(filename):
-#         cwd = FFTools.get_cwd()
-#         print('current folder {}'.format(cwd))
-#     else:
-#         arg = '{} is not a file'.format(filename)
-#         raise RuntimeError(arg)
-#     return filename
+    def find_kdecan_file(self, log_num):
+        kdecan_file = 'No such file'
+        file_arr = FFTools.get_file_arr(fpath=self.logdir, extension=self.file_extension)
+        for file in file_arr:
+            if log_num is not None:
+                pattern = f'_{log_num}_'
+                if pattern in file:
+                    kdecan_file = os.path.abspath(file)
+                    break
+        print(f'[find_kdecan_file] logdir {self.logdir}')
+        print(f'[find_kdecan_file] file_extension {self.file_extension}')
+        print(f'[find_kdecan_file] log_num {log_num}')
+        print(f'[find_kdecan_file] kdecan_file {kdecan_file}')
+        return kdecan_file
 
 
 if __name__ == '__main__':
@@ -117,8 +112,11 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    kdecan_data = KdecanPlot(os.path.abspath(args.bdir), args.log_num, args.time_win)
-    kdecan_data.process_folder()
+    kdecan_plot = KdecanPlot(os.path.abspath(args.bdir), args.time_win)
+    if args.log_num is not None:
+        kdecan_plot.process_file(kdecan_file=kdecan_plot.find_kdecan_file(args.log_num))
+    else:
+        kdecan_plot.process_folder()
 
     # ufilename = sys.argv[1]
     # ufilename = parse_user_arg(ufilename)
