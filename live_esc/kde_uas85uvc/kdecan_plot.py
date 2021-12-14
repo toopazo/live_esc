@@ -8,7 +8,12 @@ import argparse
 import datetime
 import matplotlib.pyplot as plt
 from toopazo_tools.file_folder import FileFolderTools as FFTools
-from kdecan_parse import KdecanParser
+
+# Check if this is running inside toopazo_ulg/ or deployed as a module
+if os.path.isfile('kdecan_parse.py'):
+    from kdecan_parse import KdecanParser
+else:
+    from live_esc.kde_uas85uvc.kdecan_parse import KdecanParser
 
 
 class KdecanPlot:

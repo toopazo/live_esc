@@ -1,13 +1,19 @@
 #!/usr/bin/python3
 
 import sys
+import os
 # import numpy as np
 # import signal
 # import time
 # import datetime
 from toopazo_tools.file_folder import FileFolderTools as FFTools
 from toopazo_tools.telemetry import TelemetryLogger
-from kdecan_interface import KdeCanIface
+
+# Check if this is running inside toopazo_ulg/ or deployed as a module
+if os.path.isfile('kdecan_interface.py'):
+    from kdecan_interface import KdeCanIface
+else:
+    from live_esc.kde_uas85uvc.kdecan_interface import KdeCanIface
 
 
 class KdecanIfaceWrapper:
