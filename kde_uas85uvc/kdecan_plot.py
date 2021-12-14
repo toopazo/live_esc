@@ -59,6 +59,14 @@ class KdecanPlot:
         plt.savefig(file_path)
         # return file_path
 
+    def plot_kdecan_dataframe(self, kdecan_df, escid):
+        df_tmp = kdecan_df[kdecan_df[KdecanParser.col_escid] == escid]
+        col_arr = [KdecanParser.col_voltage, KdecanParser.col_current, KdecanParser.col_rpm,
+                   KdecanParser.col_inthtl, KdecanParser.col_outthtl]
+        df_tmp = df_tmp[col_arr]
+        # df_tmp['power'] = df_tmp[self.col_voltage] * df_tmp[self.col_current]
+        df_tmp.plot(figsize=self.figsize, subplots=True)
+
     def process_file(self, kdecan_file):
         if self.log_num is not None:
             pattern = f'_{self.log_num}_'
@@ -70,12 +78,7 @@ class KdecanPlot:
         print(kdecan_df)
 
         for escid in range(11, 19):
-            df_tmp = kdecan_df[kdecan_df[KdecanParser.col_escid] == escid]
-            col_arr = [KdecanParser.col_voltage, KdecanParser.col_current, KdecanParser.col_rpm,
-                       KdecanParser.col_inthtl, KdecanParser.col_outthtl]
-            df_tmp = df_tmp[col_arr]
-            # df_tmp['power'] = df_tmp[self.col_voltage] * df_tmp[self.col_current]
-            df_tmp.plot(figsize=self.figsize, subplots=True)
+            self.plot_kdecan_dataframe(kdecan_df, escid)
             self.save_current_plot(kdecan_file, tag_arr=["escid{}".format(escid)], sep="_", ext='.png')
 
     def process_folder(self):
