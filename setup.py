@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="live_esc",    # Replace with your own username
-    version="0.0.1",
+    version="0.0.2",
     author="toopazo",
     author_email="toopazo@protonmail.com",
     description="Python package to communicate with an ESC and log, parse and plot data in real time",
