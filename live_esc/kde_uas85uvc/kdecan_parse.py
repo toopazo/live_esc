@@ -57,16 +57,16 @@ class KdecanParser:
     def get_pandas_dataframe(kdecan_file, time_win):
         # if verbose:
         #     print('[KdecanParser] Parsing file %s' % self.kdecan_file)
-        dataframe = pandas.read_csv(
+        kdecan_df = pandas.read_csv(
             kdecan_file, index_col=KdecanParser.col_time,
             parse_dates=True, skipinitialspace=True)
-        dataframe = PandasTools.apply_time_win_strptime(dataframe, time_win)
+        kdecan_df = PandasTools.apply_time_win_strptime(kdecan_df, time_win)
         # if verbose:
         #     print(dataframe)
-        return dataframe
+        return kdecan_df
 
     @staticmethod
-    def kdecan_to_escid_dataframe(kdecan_df, escid):
+    def kdecan_df_to_escid_df(kdecan_df, escid):
         assert isinstance(kdecan_df, pandas.DataFrame)
         escid_cond = kdecan_df['escid'] == escid
         escid_df = kdecan_df[escid_cond]
@@ -104,5 +104,32 @@ class KdecanParser:
 
         return copy.deepcopy(new_escid_df)
 
-
+    @staticmethod
+    def kdecan_df_to_escid_dict(kdecan_df):
+        # Create new dataframes for each escid
+        esc11_df = KdecanParser.kdecan_df_to_escid_df(kdecan_df, escid=11)
+        esc12_df = KdecanParser.kdecan_df_to_escid_df(kdecan_df, escid=12)
+        esc13_df = KdecanParser.kdecan_df_to_escid_df(kdecan_df, escid=13)
+        esc14_df = KdecanParser.kdecan_df_to_escid_df(kdecan_df, escid=14)
+        esc15_df = KdecanParser.kdecan_df_to_escid_df(kdecan_df, escid=15)
+        esc16_df = KdecanParser.kdecan_df_to_escid_df(kdecan_df, escid=16)
+        esc17_df = KdecanParser.kdecan_df_to_escid_df(kdecan_df, escid=17)
+        esc18_df = KdecanParser.kdecan_df_to_escid_df(kdecan_df, escid=18)
+        min_num_samples = min(
+            esc11_df.shape[0], esc12_df.shape[0],
+            esc13_df.shape[0], esc14_df.shape[0],
+            esc15_df.shape[0], esc16_df.shape[0],
+            esc17_df.shape[0], esc18_df.shape[0]
+        )
+        escid_dict = {
+            'esc11_df': esc11_df.iloc[:min_num_samples],
+            'esc12_df': esc12_df.iloc[:min_num_samples],
+            'esc13_df': esc13_df.iloc[:min_num_samples],
+            'esc14_df': esc14_df.iloc[:min_num_samples],
+            'esc15_df': esc15_df.iloc[:min_num_samples],
+            'esc16_df': esc16_df.iloc[:min_num_samples],
+            'esc17_df': esc17_df.iloc[:min_num_samples],
+            'esc18_df': esc18_df.iloc[:min_num_samples],
+        }
+        return copy.deepcopy(escid_dict)
 
