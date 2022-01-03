@@ -2,9 +2,9 @@
 
 import os
 import pandas
-import datetime
+import numpy as np
 import copy
-from toopazo_tools.pandas import PandasTools
+from toopazo_tools.pandas import PandasTools, DataframeTools
 
 
 class KdecanParser:
@@ -133,3 +133,91 @@ class KdecanParser:
         }
         return copy.deepcopy(escid_dict)
 
+
+class EscidParserTools:
+    @staticmethod
+    def resample(escid_dict, time_secs, max_delta):
+        if DataframeTools.check_time_difference(escid_dict, max_delta):
+            # time_secs = DataframeTools.shortest_time_secs(escid_dict)
+            pass
+        else:
+            raise RuntimeError('EscidParserTools.check_time_difference failed')
+
+        new_escid_dict = {}
+        x = time_secs
+        for key, escid_df in escid_dict.items():
+            # xp = escid_df.index
+            xp = DataframeTools.index_to_elapsed_time(escid_df)
+            data = {
+                'voltage V':  np.interp(x, xp, fp=escid_df['voltage V']),
+                'current A':  np.interp(x, xp, fp=escid_df['current A']),
+                'angVel rpm': np.interp(x, xp, fp=escid_df['angVel rpm']),
+                'temp degC': np.interp(x, xp, fp=escid_df['temp degC']),
+                'inthtl us': np.interp(x, xp, fp=escid_df['inthtl us']),
+                'outthtl perc': np.interp(x, xp, fp=escid_df['outthtl perc']),
+            }
+            index = x
+            new_escid_df = pandas.DataFrame(data=data, index=index)
+            new_escid_dict[key] = new_escid_df
+            # print(f"key {key} ------------------------")
+            # print(f"{escid_df}")
+            # print(f"{new_escid_df}")
+        return copy.deepcopy(new_escid_dict)
+
+    @staticmethod
+    def synchronize(escid_dict, time_secs):
+        max_delta = 0.01
+        if DataframeTools.check_time_difference(escid_dict, max_delta):
+            # time_secs = DataframeTools.shortest_time_secs(escid_dict)
+            new_escid_dict = EscidParserTools.resample(
+                escid_dict, time_secs, max_delta)
+            return copy.deepcopy(new_escid_dict)
+        else:
+            raise RuntimeError('EscidParserTools.check_time_difference failed')
+
+    @staticmethod
+    def remove_by_condition(escid_dict, escid_ref_cond):
+        # assert isinstance(kdecan_df, pandas.DataFrame)
+        # assert isinstance(ulg_out_df, pandas.DataFrame)
+
+        esc11_df = escid_dict['esc11_df']
+        esc12_df = escid_dict['esc12_df']
+        esc13_df = escid_dict['esc13_df']
+        esc14_df = escid_dict['esc14_df']
+        esc15_df = escid_dict['esc15_df']
+        esc16_df = escid_dict['esc16_df']
+        esc17_df = escid_dict['esc17_df']
+        esc18_df = escid_dict['esc18_df']
+
+        # escid_df = escid_dict[f'esc{reference_escid}_df']
+        # escid_ref_cond = escid_df['inthtl us'] > min_throttle
+
+        escid_ref_cond.index = esc11_df.index
+        esc11_df = esc11_df[escid_ref_cond]
+        escid_ref_cond.index = esc12_df.index
+        esc12_df = esc12_df[escid_ref_cond]
+        escid_ref_cond.index = esc13_df.index
+        esc13_df = esc13_df[escid_ref_cond]
+        escid_ref_cond.index = esc14_df.index
+        esc14_df = esc14_df[escid_ref_cond]
+        escid_ref_cond.index = esc15_df.index
+        esc15_df = esc15_df[escid_ref_cond]
+        escid_ref_cond.index = esc16_df.index
+        esc16_df = esc16_df[escid_ref_cond]
+        escid_ref_cond.index = esc17_df.index
+        esc17_df = esc17_df[escid_ref_cond]
+        escid_ref_cond.index = esc18_df.index
+        esc18_df = esc18_df[escid_ref_cond]
+
+        escid_dict = {
+            'esc11_df': esc11_df,
+            'esc12_df': esc12_df,
+            'esc13_df': esc13_df,
+            'esc14_df': esc14_df,
+            'esc15_df': esc15_df,
+            'esc16_df': esc16_df,
+            'esc17_df': esc17_df,
+            'esc18_df': esc18_df,
+        }
+
+        return copy.deepcopy(escid_dict)
