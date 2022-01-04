@@ -12,9 +12,6 @@ class KdecanParser:
     Class to get data from log
     """
 
-    def __init__(self):
-        pass
-
     file_extension = 'kdecan'
     col_time = 'time s'
     col_escid = 'escid'
@@ -26,32 +23,8 @@ class KdecanParser:
     col_inthtl = 'inthtl us'
     col_outthtl = 'outthtl perc'
 
-    # def __init__(self, kdecan_file, time_win):
-    #     # bdir = FFTools.full_path(args.bdir)
-    #     # bdir = os.path.abspath(args.bdir)
-    #     self.kdecan_file = kdecan_file
-    #     if not os.path.isfile(self.kdecan_file):
-    #         raise RuntimeError(f'[KdecanParser] No such file {self.kdecan_file}')
-    #
-    #     # self.file_path = filepath
-    #     # [head, tail] = FFTools.get_file_split(filepath)
-    #     # self.file_folder = head
-    #     # self.file_name = tail
-    #     # [root, ext] = FFTools.get_file_splitext(filepath)
-    #     # _ = root
-    #     self.file_extension = 'kdecan'
-    #
-    #     self.col_time = 'time s'
-    #     self.col_escid = 'escid'
-    #     self.col_voltage = 'voltage V'
-    #     self.col_current = 'current A'
-    #     self.col_rpm = 'angVel rpm'
-    #     self.col_temp = 'temp degC'
-    #     self.col_warn = 'warning'
-    #     self.col_inthtl = 'inthtl us'
-    #     self.col_outthtl = 'outthtl perc'
-    #
-    #     self.time_win = time_win
+    def __init__(self):
+        pass
 
     @staticmethod
     def get_pandas_dataframe(kdecan_file, time_win):
@@ -64,6 +37,13 @@ class KdecanParser:
         # if verbose:
         #     print(dataframe)
         return kdecan_df
+
+    @staticmethod
+    def get_escid_dict(kdecan_file):
+        kdecan_df = KdecanParser.get_pandas_dataframe(
+            kdecan_file, time_win=None)
+        escid_dict = KdecanParser.kdecan_df_to_escid_dict(kdecan_df)
+        return escid_dict
 
     @staticmethod
     def kdecan_df_to_escid_df(kdecan_df, escid):
